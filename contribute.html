@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contribute &mdash; tempo_eval 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="evaluation.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tempo_eval
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#estimates">Estimates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#annotation-metadata">Annotation Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convert2jams">convert2jams</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tempo_eval</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Contribute</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/contribute.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contribute">
+<h1>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h1>
+<p>If you have implemented a new tempo estimation approach or
+created a new reference dataset, please contribute your data.</p>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>If you have created a revised set of annotations for an existing dataset
+or a completely new dataset, please create corresponding <a class="reference external" href="https://github.com/marl/jams">JAMS</a> and a pull request.</p>
+<p>Additional annotations for existing datasets should be added to the
+existing <code class="docutils literal notranslate"><span class="pre">.jams</span></code> files. Please make sure to include both the data and
+the code that adds your data to the jams.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>To add new <em>reference annotations</em> to the dataset <em>ballroom</em>…</p>
+<ol class="arabic simple">
+<li><p>Create a new folder under <code class="docutils literal notranslate"><span class="pre">annotations/references/ballroom/</span></code>
+named after the publication that features your new annotations,
+e.g., <code class="docutils literal notranslate"><span class="pre">smith2018</span></code>. If your annotations were not released in
+a scientific publication, come up with some other reasonable name.</p></li>
+<li><p>Place your original annotations (that don’t have to be <a class="reference external" href="https://github.com/marl/jams">JAMS</a>) into the new folder.</p></li>
+<li><p>Add code to <code class="docutils literal notranslate"><span class="pre">tempo_eval/parser/ballroom.py</span></code> that creates <code class="docutils literal notranslate"><span class="pre">.jams</span></code>
+files containing <em>all</em> known annotations for the dataset. These
+<code class="docutils literal notranslate"><span class="pre">.jams</span></code> must be placed into the folder
+<code class="docutils literal notranslate"><span class="pre">annotations/references/ballroom/jams/</span></code></p></li>
+</ol>
+<p>Should you want to add a <em>new</em> dataset, please follow the recipe above
+with the exception that you should create a new Python file named
+<code class="docutils literal notranslate"><span class="pre">your_dataset_name.py</span></code>, which reads your original annotations and
+creates <code class="docutils literal notranslate"><span class="pre">.jams</span></code> files in the appropriate folder.</p>
+<p>Please read about how to annotate your
+<a class="reference external" href="https://github.com/marl/jams">JAMS</a> in <a class="reference internal" href="#annotation-metadata">Annotation Metadata</a>.</p>
+</div>
+</div>
+<div class="section" id="estimates">
+<h2>Estimates<a class="headerlink" href="#estimates" title="Permalink to this headline">¶</a></h2>
+<p>An essential characteristic of tempo_eval is that it does not only
+contain reference datasets, but also estimates.
+Contributing your estimates allows other researchers to compare to your
+work without having to re-run all your experiments.
+At the same time, you can compare your results with a wide variety
+of existing approaches.</p>
+<div class="section" id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>To add new <em>estimates</em> for the dataset <em>ballroom</em>…</p>
+<ol class="arabic simple">
+<li><p>Create a new folder under <code class="docutils literal notranslate"><span class="pre">annotations/estimates/ballroom/</span></code>
+named after the publication that features your new approach,
+e.g., <code class="docutils literal notranslate"><span class="pre">smith2018</span></code>. If your estimates were not released in
+a scientific publication, come up with some other reasonable name
+that allows others to recognize your system, e.g., a product name.</p></li>
+<li><p>Oftentimes one system can be run with different parameters or
+one publication features multiple approaches. In your <code class="docutils literal notranslate"><span class="pre">smith2018</span></code>
+folder, create subfolders for each of these approaches or parameter
+sets. The subfolder’s name could simply be a version number
+<code class="docutils literal notranslate"><span class="pre">version_3_2_1</span></code> or just <code class="docutils literal notranslate"><span class="pre">default</span></code>. It’s highly recommended to
+include information in the JAMS as well.</p></li>
+<li><p>Place your original annotations (that don’t have to be <a class="reference external" href="https://github.com/marl/jams">JAMS</a>) into the new subfolder.</p></li>
+<li><p>If your annotations aren’t yet in the <a class="reference external" href="https://github.com/marl/jams">JAMS</a> format, convert them.
+tempo_eval provides a script called <a class="reference internal" href="#convert2jams">convert2jams</a>, which makes it
+easy to convert popular formats like CSV.
+Before you do this, please read about how to properly annotate your
+<a class="reference external" href="https://github.com/marl/jams">JAMS</a> in <a class="reference internal" href="#annotation-metadata">Annotation Metadata</a>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="annotation-metadata">
+<h2>Annotation Metadata<a class="headerlink" href="#annotation-metadata" title="Permalink to this headline">¶</a></h2>
+<p>Please ensure that your <a class="reference external" href="https://github.com/marl/jams">JAMS</a>
+contain suitable <a class="reference external" href="https://jams.readthedocs.io/en/stable/jams_structure.html#annotation-metadata">annotation_metadata</a>.
+The bare minimum for tempo_eval is a <code class="docutils literal notranslate"><span class="pre">corpus</span></code> name and a <code class="docutils literal notranslate"><span class="pre">version</span></code> that is
+unique per corpus.
+The corpus name should match the <code class="docutils literal notranslate"><span class="pre">annotations/references/</span></code>-folder name,
+if possible, e.g., <code class="docutils literal notranslate"><span class="pre">ballroom</span></code>.</p>
+<p>Because the <code class="docutils literal notranslate"><span class="pre">annotator</span></code> object is of type <a class="reference external" href="https://jams.readthedocs.io/en/stable/generated/jams.Sandbox.html">Sandbox</a>, it
+supports any kind of <code class="docutils literal notranslate"><span class="pre">dict</span></code>. tempo_eval honors two special keys: <code class="docutils literal notranslate"><span class="pre">bibtex</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ref_url</span></code>. Both keys aim at giving credit to your work.
+While <code class="docutils literal notranslate"><span class="pre">ref_url</span></code> lets you specify a simple URL to your own website,
+<code class="docutils literal notranslate"><span class="pre">bibtex</span></code> lets you specify a minimal bibtex entry. Should you choose to
+add such an entry, you might also want to consider adding it to
+<code class="docutils literal notranslate"><span class="pre">tempo_eval/references.bib</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Example for <code class="docutils literal notranslate"><span class="pre">ref_url</span></code> and <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> annotator keys.</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">[...]</span>
+<span class="s2">&quot;annotation_metadata&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;curator&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Simon Dixon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;s.e.dixon@qmul.ac.uk&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;annotator&quot;</span><span class="o">:</span> <span class="p">{</span>
+<span class="hll">        <span class="s2">&quot;bibtex&quot;</span><span class="o">:</span> <span class="s2">&quot;@article{Gouyon2006,\nAuthor = \&quot;Gouyon, Fabien and Klapuri, Anssi P. and Dixon, Simon and Alonso, Miguel and Tzanetakis, George and Uhle, Christian and Cano, Pedro\&quot;,\nJournal = \&quot;IEEE Transactions on Audio, Speech, and Language Processing\&quot;,\nNumber = \&quot;5\&quot;,\nPages = \&quot;1832--1844\&quot;,\nTitle = \&quot;An experimental comparison of audio tempo induction algorithms\&quot;,\nVolume = \&quot;14\&quot;,\nYear = \&quot;2006\&quot;\n}\n&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="s2">&quot;ref_url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://mtg.upf.edu/ismir2004/contest/tempoContest/node5.html&quot;</span>
+</span>    <span class="p">},</span>
+    <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;corpus&quot;</span><span class="o">:</span> <span class="s2">&quot;ballroom&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;annotation_tools&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;annotation_rules&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;validation&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data_source&quot;</span><span class="o">:</span> <span class="s2">&quot;BallroomDancers.com, checked by human&quot;</span>
+<span class="p">}</span>
+<span class="p">[...]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="convert2jams">
+<h2>convert2jams<a class="headerlink" href="#convert2jams" title="Permalink to this headline">¶</a></h2>
+<p>convert2jams is a simple command line script that converts your CSV, TSV,
+JSON or plain text tempo annotations into <a class="reference external" href="https://github.com/marl/jams">JAMS</a>.</p>
+<p>For detailed usage information please run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> convert2jams --help
+</pre></div>
+</div>
+<p>Here’s an example that turns text files into jams.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> convert2jams -d out_dir -i text_file_dir -a audio_file_dir <span class="se">\</span>
+    -c corpus_name -v annotation_version
+</pre></div>
+</div>
+<p>For this to work, each text file located in <code class="docutils literal notranslate"><span class="pre">text_file_dir</span></code> must contain only
+tempo values for a single audio file. These tempo values can either be single
+values or a <a class="reference external" href="https://www.music-ir.org/mirex/wiki/2006:Audio_Tempo_Extraction">MIREX-style triplet</a>.
+The text file names must correspond to the audio file names. For example, the
+annotation for the audio file <code class="docutils literal notranslate"><span class="pre">my_track.wav</span></code> should be in a text file called
+<code class="docutils literal notranslate"><span class="pre">my_track.txt</span></code>. All audio files should be under <code class="docutils literal notranslate"><span class="pre">audio_file_dir</span></code>.</p>
+<p>Note that each jam file should at least be annotated with a corpus name and a
+version.
+More parameters, like bibtex, curator, etc. can be easily specified via the
+command line.</p>
+<p>Alternatively, if you already have a jam file that contains a suitable
+<a class="reference external" href="https://jams.readthedocs.io/en/stable/jams_structure.html#annotation-metadata">annotation_metadata</a>-block,
+you can use it as template using the <code class="docutils literal notranslate"><span class="pre">--template</span></code> parameter:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> convert2jams -d out_dir -i text_file_dir -a audio_file_dir <span class="se">\</span>
+    --template template.jams
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="evaluation.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, tempo_eval contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

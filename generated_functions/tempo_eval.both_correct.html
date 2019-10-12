@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tempo_eval.both_correct &mdash; tempo_eval 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tempo_eval.list_estimate_corpus_names" href="../generated/tempo_eval.list_estimate_corpus_names.html" />
+    <link rel="prev" title="tempo_eval.one_correct" href="tempo_eval.one_correct.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> tempo_eval
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../evaluation.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../evaluation.html#print-reports">Print Reports</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../evaluation.html#compare-tempo-values">Compare Tempo Values</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.equal1.html">tempo_eval.equal1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.equal2.html">tempo_eval.equal2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.ape1.html">tempo_eval.ape1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.ape2.html">tempo_eval.ape2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.pe1.html">tempo_eval.pe1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.pe2.html">tempo_eval.pe2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.oe1.html">tempo_eval.oe1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.oe2.html">tempo_eval.oe2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.aoe1.html">tempo_eval.aoe1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.aoe2.html">tempo_eval.aoe2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.p_score.html">tempo_eval.p_score</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tempo_eval.one_correct.html">tempo_eval.one_correct</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tempo_eval.both_correct</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation.html#access-annotations">Access Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation.html#extract-values-from-jams">Extract Values From JAMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evaluation.html#metrics">Metrics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tempo_eval</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../evaluation.html">API Reference</a> &raquo;</li>
+        
+      <li>tempo_eval.both_correct</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated_functions/tempo_eval.both_correct.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tempo-eval-both-correct">
+<h1>tempo_eval.both_correct<a class="headerlink" href="#tempo-eval-both-correct" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="tempo_eval.both_correct">
+<code class="sig-prename descclassname">tempo_eval.</code><code class="sig-name descname">both_correct</code><span class="sig-paren">(</span><em class="sig-param">reference_tempo</em>, <em class="sig-param">estimated_tempo</em>, <em class="sig-param">tolerance=0.08</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tempo_eval/evaluation.html#both_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tempo_eval.both_correct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fraction of estimates with two correct tempo values.</p>
+<p>See also <a class="reference internal" href="tempo_eval.p_score.html#tempo_eval.p_score" title="tempo_eval.p_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">p_score</span></code></a> and
+<a class="reference internal" href="tempo_eval.one_correct.html#tempo_eval.one_correct" title="tempo_eval.one_correct"><code class="xref py py-func docutils literal notranslate"><span class="pre">one_correct</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reference_tempo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]) – (t1, t2, s1)</p></li>
+<li><p><strong>estimated_tempo</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.7)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) – (t1, t2, s1)</p></li>
+<li><p><strong>tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – tolerance, e.g., <code class="docutils literal notranslate"><span class="pre">0.08</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>fraction <span class="math notranslate nohighlight">\(\in [0,1]\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../generated/tempo_eval.list_estimate_corpus_names.html" class="btn btn-neutral float-right" title="tempo_eval.list_estimate_corpus_names" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tempo_eval.one_correct.html" class="btn btn-neutral float-left" title="tempo_eval.one_correct" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, tempo_eval contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
