@@ -1,0 +1,663 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Simon Dixon",
+          "email": "s.e.dixon@qmul.ac.uk"
+        },
+        "annotator": {
+          "bibtex": "@article{Gouyon2006,\n    Author = \"Gouyon, Fabien and Klapuri, Anssi P. and Dixon, Simon and Alonso, Miguel and Tzanetakis, George and Uhle, Christian and Cano, Pedro\",\n    Journal = \"IEEE Transactions on Audio, Speech, and Language Processing\",\n    Number = \"5\",\n    Pages = \"1832--1844\",\n    Title = \"An experimental comparison of audio tempo induction algorithms\",\n    Volume = \"14\",\n    Year = \"2006\"\n}\n",
+          "ref_url": "http://mtg.upf.edu/ismir2004/contest/tempoContest/node5.html"
+        },
+        "version": "1.0",
+        "corpus": "ballroom",
+        "annotation_tools": "",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "BallroomDancers.com, checked by human"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 168.0,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Florian Krebs",
+          "email": "florian.krebs@jku.at"
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Krebs2013,\n    Author = {Krebs, Florian and B{\\\"o}ck, Sebastian and Widmer, Gerhard},\n    Address = \"Curitiba, Brazil\",\n    Booktitle = \"Proceedings of the 14th International Society for Music Information Retrieval Conference ({ISMIR})\",\n    Pages = \"227--232\",\n    Title = \"Rhythmic Pattern Modeling for Beat and Downbeat Tracking in Musical Audio.\",\n    Year = \"2013\"\n}\n",
+          "ref_url": "https://github.com/CPJKU/BallroomAnnotations"
+        },
+        "version": "2.0",
+        "corpus": "ballroom",
+        "annotation_tools": "derived from beat annotations",
+        "annotation_rules": "median of corresponding inter beat intervals",
+        "validation": "",
+        "data_source": "manual annotation"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 166.66666666666663,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Florian Krebs",
+          "email": "florian.krebs@jku.at"
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Krebs2013,\n    Author = {Krebs, Florian and B{\\\"o}ck, Sebastian and Widmer, Gerhard},\n    Address = \"Curitiba, Brazil\",\n    Booktitle = \"Proceedings of the 14th International Society for Music Information Retrieval Conference ({ISMIR})\",\n    Pages = \"227--232\",\n    Title = \"Rhythmic Pattern Modeling for Beat and Downbeat Tracking in Musical Audio.\",\n    Year = \"2013\"\n}\n",
+          "ref_url": "https://github.com/CPJKU/BallroomAnnotations"
+        },
+        "version": "1.0",
+        "corpus": "ballroom",
+        "annotation_tools": "",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "manual annotation"
+      },
+      "namespace": "beat",
+      "data": [
+        {
+          "time": 0.189,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 0.534,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 0.882,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 1.23,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 1.576,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 1.918,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 2.264,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 2.62,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 2.984,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 3.35,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 3.713,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 4.073,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 4.423,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 4.769,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 5.116,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 5.468,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 5.82,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 6.17,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 6.52,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 6.877,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 7.237,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 7.597,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 7.955,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 8.319,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 8.688,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 9.058,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 9.421,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 9.781,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 10.139,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 10.498,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 10.856,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 11.218,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 11.582,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 11.948,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 12.312,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 12.675,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 13.033,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 13.39,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 13.747,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 14.11,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 14.475,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 14.839,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 15.201,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 15.563,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 15.923,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 16.281,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 16.64,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 17.003,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 17.367,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 17.73,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 18.09,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 18.45,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 18.807,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 19.162,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 19.515,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 19.874,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 20.231,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 20.596,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 20.957,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 21.325,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 21.691,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 22.059,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 22.421,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 22.781,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 23.14,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 23.503,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 23.87,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 24.24,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 24.608,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 24.971,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 25.333,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 25.691,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 26.051,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 26.41,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 26.77,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 27.131,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 27.49,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 27.849,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 28.206,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 28.566,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 28.924,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 29.275,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 29.615,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 29.949,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Graham Percival",
+          "email": "graham@percival-music.ca"
+        },
+        "annotator": {
+          "bibtex": "@article{Percival2014,\n    Author = \"Percival, Graham and Tzanetakis, George\",\n    Journal = \"IEEE/ACM Transactions on Audio, Speech and Language Processing ({TASLP})\",\n    Number = \"12\",\n    Pages = \"1765--1776\",\n    Title = \"Streamlined tempo estimation based on autocorrelation and cross-correlation with pulses\",\n    Volume = \"22\",\n    Year = \"2014\"\n}\n",
+          "ref_url": "http://www.marsyas.info/tempo/"
+        },
+        "version": "3.0",
+        "corpus": "ballroom",
+        "annotation_tools": "",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "BallroomDancers.com, checked by human"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 168.0,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Simon Dixon",
+          "email": "s.e.dixon@qmul.ac.uk"
+        },
+        "annotator": {
+          "bibtex": "@article{Gouyon2006,\n    Author = \"Gouyon, Fabien and Klapuri, Anssi P. and Dixon, Simon and Alonso, Miguel and Tzanetakis, George and Uhle, Christian and Cano, Pedro\",\n    Journal = \"IEEE Transactions on Audio, Speech, and Language Processing\",\n    Number = \"5\",\n    Pages = \"1832--1844\",\n    Title = \"An experimental comparison of audio tempo induction algorithms\",\n    Volume = \"14\",\n    Year = \"2006\"\n}\n",
+          "ref_url": "http://mtg.upf.edu/ismir2004/contest/tempoContest/node5.html"
+        },
+        "version": "1.0",
+        "corpus": "ballroom",
+        "annotation_tools": "",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "BallroomDancers.com"
+      },
+      "namespace": "tag_open",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": "Jive",
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 31.787936507936507,
+    "identifiers": {
+      "file": "Media-103516.wav"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}

@@ -1,0 +1,858 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Anssi Klapuri",
+          "email": "anssi@yousician.com"
+        },
+        "annotator": {
+          "bibtex": "@article{Klapuri2006,\n    Author = \"Klapuri, Anssi P. and Eronen, Antti J. and Astola, Jaakko\",\n    Journal = \"IEEE Transactions on Audio, Speech and Language Processing\",\n    Number = \"1\",\n    Pages = \"342--355\",\n    Title = \"Analysis of the meter of acoustic musical signals\",\n    Volume = \"14\",\n    Year = \"2006\"\n}\n"
+        },
+        "version": "1.0",
+        "corpus": "klapuri",
+        "annotation_tools": "derived from beat annotations",
+        "annotation_rules": "median of inter beat intervals",
+        "validation": "",
+        "data_source": "manual annotation"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 132.1440370003297,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {
+        "license": "Copyright (c) 2019 Tampere University and its licensors\n\nAll rights reserved.\n\nPermission is hereby granted, without written agreement and without license or royalty\n\nfees, to use and copy the beat and measure (aka barline or downbeat) annotations (\"Work\") of the music database described in article \"Analysis of the meter of acoustic musical signals\", Klapuri, A., Eronen, A., Astola, J.,  IEEE Trans. Audio, Speech, and Language\n\nProcessing, 14(1), 2006.\n\n\n\nThis grant is only for experimental and non-commercial\n\npurposes, provided that the copyright notice in its entirety appear in all copies of this Work,\n\nand the original article describing the use of this Work (Klapuri, A., Eronen, A., Astola, J., \"Analysis of the meter of acoustic musical signals ,\" IEEE Trans. Audio, Speech, and Language Processing, 14(1), 2006), is acknowledged in any publication that reports research using this Work.\n\nAny commercial use of the Work or any part thereof is strictly prohibited.\n\nCommercial use include, but is not limited to:\n\n- selling or reproducing the Work\n\n- selling or distributing the results or content achieved by use of the Work\n\n- providing services by using the Work.\n\n\n\nIN NO EVENT SHALL TAMPERE UNIVERSITY OR ITS LICENSORS BE LIABLE TO ANY PARTY\n\nFOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE\n\nOF THIS WORK AND ITS DOCUMENTATION, EVEN IF TAMPERE UNIVERSITY OR ITS\n\nLICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n\n\nTAMPERE UNIVERSITY AND ALL ITS LICENSORS SPECIFICALLY DISCLAIMS ANY\n\nWARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND\n\nFITNESS FOR A PARTICULAR PURPOSE. THE WORK PROVIDED HEREUNDER IS ON AN \"AS IS\" BASIS, AND\n\nTHE TAMPERE UNIVERSITY HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,\n\nUPDATES, ENHANCEMENTS, OR MODIFICATIONS."
+      },
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Anssi Klapuri",
+          "email": "anssi@yousician.com"
+        },
+        "annotator": {
+          "bibtex": "@article{Klapuri2006,\n    Author = \"Klapuri, Anssi P. and Eronen, Antti J. and Astola, Jaakko\",\n    Journal = \"IEEE Transactions on Audio, Speech and Language Processing\",\n    Number = \"1\",\n    Pages = \"342--355\",\n    Title = \"Analysis of the meter of acoustic musical signals\",\n    Volume = \"14\",\n    Year = \"2006\"\n}\n"
+        },
+        "version": "1.0",
+        "corpus": "klapuri",
+        "annotation_tools": "",
+        "annotation_rules": "Beat positions automatically derived from measure timestamps. Confidence refers to beat value, not timestamp.",
+        "validation": "",
+        "data_source": "manual annotation"
+      },
+      "namespace": "beat",
+      "data": [
+        {
+          "time": 196.7637,
+          "duration": NaN,
+          "value": -1,
+          "confidence": 1.0
+        },
+        {
+          "time": 197.1704,
+          "duration": NaN,
+          "value": -1,
+          "confidence": 1.0
+        },
+        {
+          "time": 197.6179,
+          "duration": NaN,
+          "value": -1,
+          "confidence": 1.0
+        },
+        {
+          "time": 198.0534,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 198.5252,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 198.9735,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 199.4474,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 199.8762,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 200.3351,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 200.777,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 201.2337,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 201.6953,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 202.1584,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 202.6,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 203.0919,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 203.5427,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 203.9841,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 204.408,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 204.8851,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 205.3164,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 205.776,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 206.2335,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 206.7188,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 207.161,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 207.6052,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 208.0311,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 208.5158,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 208.9645,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 209.4169,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 209.8784,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 210.3416,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 210.7556,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 211.2071,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 211.6388,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 212.1327,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 212.6123,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 213.0644,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 213.5063,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 213.9808,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 214.4053,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 214.851,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 215.3109,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 215.7913,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 216.2249,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 216.6794,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 217.1434,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 217.6119,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 218.055,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 218.5044,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 218.9462,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 219.4207,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 219.8398,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 220.2884,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 220.7287,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 221.2178,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 221.6834,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 222.1238,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 222.5765,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 223.0655,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 223.492,
+          "duration": NaN,
+          "value": 1,
+          "confidence": 1.0
+        },
+        {
+          "time": 223.9368,
+          "duration": NaN,
+          "value": 2,
+          "confidence": 1.0
+        },
+        {
+          "time": 224.3839,
+          "duration": NaN,
+          "value": 3,
+          "confidence": 1.0
+        },
+        {
+          "time": 224.8699,
+          "duration": NaN,
+          "value": 4,
+          "confidence": 1.0
+        },
+        {
+          "time": 225.3505,
+          "duration": NaN,
+          "value": 5,
+          "confidence": 0.5
+        },
+        {
+          "time": 225.7904,
+          "duration": NaN,
+          "value": 6,
+          "confidence": 0.5
+        },
+        {
+          "time": 226.2448,
+          "duration": NaN,
+          "value": 7,
+          "confidence": 0.5
+        },
+        {
+          "time": 226.7228,
+          "duration": NaN,
+          "value": 8,
+          "confidence": 0.5
+        },
+        {
+          "time": 227.1502,
+          "duration": NaN,
+          "value": 9,
+          "confidence": 0.5
+        },
+        {
+          "time": 227.5829,
+          "duration": NaN,
+          "value": 10,
+          "confidence": 0.5
+        },
+        {
+          "time": 228.0457,
+          "duration": NaN,
+          "value": 11,
+          "confidence": 0.5
+        },
+        {
+          "time": 228.512,
+          "duration": NaN,
+          "value": 12,
+          "confidence": 0.5
+        },
+        {
+          "time": 228.9455,
+          "duration": NaN,
+          "value": 13,
+          "confidence": 0.5
+        },
+        {
+          "time": 229.4462,
+          "duration": NaN,
+          "value": 14,
+          "confidence": 0.5
+        },
+        {
+          "time": 229.8837,
+          "duration": NaN,
+          "value": 15,
+          "confidence": 0.5
+        },
+        {
+          "time": 230.3317,
+          "duration": NaN,
+          "value": 16,
+          "confidence": 0.5
+        },
+        {
+          "time": 230.7834,
+          "duration": NaN,
+          "value": 17,
+          "confidence": 0.5
+        },
+        {
+          "time": 231.2599,
+          "duration": NaN,
+          "value": 18,
+          "confidence": 0.5
+        },
+        {
+          "time": 231.6794,
+          "duration": NaN,
+          "value": 19,
+          "confidence": 0.5
+        },
+        {
+          "time": 232.1529,
+          "duration": NaN,
+          "value": 20,
+          "confidence": 0.5
+        },
+        {
+          "time": 232.6211,
+          "duration": NaN,
+          "value": 21,
+          "confidence": 0.5
+        },
+        {
+          "time": 233.0983,
+          "duration": NaN,
+          "value": 22,
+          "confidence": 0.5
+        },
+        {
+          "time": 233.5259,
+          "duration": NaN,
+          "value": 23,
+          "confidence": 0.5
+        },
+        {
+          "time": 233.9678,
+          "duration": NaN,
+          "value": 24,
+          "confidence": 0.5
+        },
+        {
+          "time": 234.4228,
+          "duration": NaN,
+          "value": 25,
+          "confidence": 0.5
+        },
+        {
+          "time": 234.9084,
+          "duration": NaN,
+          "value": 26,
+          "confidence": 0.5
+        },
+        {
+          "time": 235.3327,
+          "duration": NaN,
+          "value": 27,
+          "confidence": 0.5
+        },
+        {
+          "time": 235.7642,
+          "duration": NaN,
+          "value": 28,
+          "confidence": 0.5
+        },
+        {
+          "time": 236.2244,
+          "duration": NaN,
+          "value": 29,
+          "confidence": 0.5
+        },
+        {
+          "time": 236.7093,
+          "duration": NaN,
+          "value": 30,
+          "confidence": 0.5
+        },
+        {
+          "time": 237.1611,
+          "duration": NaN,
+          "value": 31,
+          "confidence": 0.5
+        },
+        {
+          "time": 237.5898,
+          "duration": NaN,
+          "value": 32,
+          "confidence": 0.5
+        },
+        {
+          "time": 238.0452,
+          "duration": NaN,
+          "value": 33,
+          "confidence": 0.5
+        },
+        {
+          "time": 238.5179,
+          "duration": NaN,
+          "value": 34,
+          "confidence": 0.5
+        },
+        {
+          "time": 238.9495,
+          "duration": NaN,
+          "value": 35,
+          "confidence": 0.5
+        },
+        {
+          "time": 239.4025,
+          "duration": NaN,
+          "value": 36,
+          "confidence": 0.5
+        },
+        {
+          "time": 239.8627,
+          "duration": NaN,
+          "value": 37,
+          "confidence": 0.5
+        },
+        {
+          "time": 240.35,
+          "duration": NaN,
+          "value": 38,
+          "confidence": 0.5
+        },
+        {
+          "time": 240.76,
+          "duration": NaN,
+          "value": 39,
+          "confidence": 0.5
+        },
+        {
+          "time": 241.2119,
+          "duration": NaN,
+          "value": 40,
+          "confidence": 0.5
+        },
+        {
+          "time": 241.6564,
+          "duration": NaN,
+          "value": 41,
+          "confidence": 0.5
+        },
+        {
+          "time": 242.1196,
+          "duration": NaN,
+          "value": 42,
+          "confidence": 0.5
+        },
+        {
+          "time": 242.5762,
+          "duration": NaN,
+          "value": 43,
+          "confidence": 0.5
+        },
+        {
+          "time": 243.0371,
+          "duration": NaN,
+          "value": 44,
+          "confidence": 0.5
+        },
+        {
+          "time": 243.5165,
+          "duration": NaN,
+          "value": 45,
+          "confidence": 0.5
+        },
+        {
+          "time": 243.9857,
+          "duration": NaN,
+          "value": 46,
+          "confidence": 0.5
+        },
+        {
+          "time": 244.4091,
+          "duration": NaN,
+          "value": 47,
+          "confidence": 0.5
+        },
+        {
+          "time": 244.8773,
+          "duration": NaN,
+          "value": 48,
+          "confidence": 0.5
+        },
+        {
+          "time": 245.3368,
+          "duration": NaN,
+          "value": 49,
+          "confidence": 0.5
+        },
+        {
+          "time": 245.791,
+          "duration": NaN,
+          "value": 50,
+          "confidence": 0.5
+        },
+        {
+          "time": 246.2229,
+          "duration": NaN,
+          "value": 51,
+          "confidence": 0.5
+        },
+        {
+          "time": 246.6888,
+          "duration": NaN,
+          "value": 52,
+          "confidence": 0.5
+        },
+        {
+          "time": 247.1533,
+          "duration": NaN,
+          "value": 53,
+          "confidence": 0.5
+        },
+        {
+          "time": 247.6474,
+          "duration": NaN,
+          "value": 54,
+          "confidence": 0.5
+        },
+        {
+          "time": 248.0766,
+          "duration": NaN,
+          "value": 55,
+          "confidence": 0.5
+        },
+        {
+          "time": 248.5352,
+          "duration": NaN,
+          "value": 56,
+          "confidence": 0.5
+        },
+        {
+          "time": 248.9675,
+          "duration": NaN,
+          "value": 57,
+          "confidence": 0.5
+        },
+        {
+          "time": 249.4231,
+          "duration": NaN,
+          "value": 58,
+          "confidence": 0.5
+        },
+        {
+          "time": 249.8718,
+          "duration": NaN,
+          "value": 59,
+          "confidence": 0.5
+        },
+        {
+          "time": 250.332,
+          "duration": NaN,
+          "value": 60,
+          "confidence": 0.5
+        },
+        {
+          "time": 250.8081,
+          "duration": NaN,
+          "value": 61,
+          "confidence": 0.5
+        },
+        {
+          "time": 251.2499,
+          "duration": NaN,
+          "value": 62,
+          "confidence": 0.5
+        },
+        {
+          "time": 251.7036,
+          "duration": NaN,
+          "value": 63,
+          "confidence": 0.5
+        },
+        {
+          "time": 252.1725,
+          "duration": NaN,
+          "value": 64,
+          "confidence": 0.5
+        },
+        {
+          "time": 252.6176,
+          "duration": NaN,
+          "value": 65,
+          "confidence": 0.5
+        },
+        {
+          "time": 253.0865,
+          "duration": NaN,
+          "value": 66,
+          "confidence": 0.5
+        }
+      ],
+      "sandbox": {
+        "license": "Copyright (c) 2019 Tampere University and its licensors\n\nAll rights reserved.\n\nPermission is hereby granted, without written agreement and without license or royalty\n\nfees, to use and copy the beat and measure (aka barline or downbeat) annotations (\"Work\") of the music database described in article \"Analysis of the meter of acoustic musical signals\", Klapuri, A., Eronen, A., Astola, J.,  IEEE Trans. Audio, Speech, and Language\n\nProcessing, 14(1), 2006.\n\n\n\nThis grant is only for experimental and non-commercial\n\npurposes, provided that the copyright notice in its entirety appear in all copies of this Work,\n\nand the original article describing the use of this Work (Klapuri, A., Eronen, A., Astola, J., \"Analysis of the meter of acoustic musical signals ,\" IEEE Trans. Audio, Speech, and Language Processing, 14(1), 2006), is acknowledged in any publication that reports research using this Work.\n\nAny commercial use of the Work or any part thereof is strictly prohibited.\n\nCommercial use include, but is not limited to:\n\n- selling or reproducing the Work\n\n- selling or distributing the results or content achieved by use of the Work\n\n- providing services by using the Work.\n\n\n\nIN NO EVENT SHALL TAMPERE UNIVERSITY OR ITS LICENSORS BE LIABLE TO ANY PARTY\n\nFOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE\n\nOF THIS WORK AND ITS DOCUMENTATION, EVEN IF TAMPERE UNIVERSITY OR ITS\n\nLICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n\n\nTAMPERE UNIVERSITY AND ALL ITS LICENSORS SPECIFICALLY DISCLAIMS ANY\n\nWARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND\n\nFITNESS FOR A PARTICULAR PURPOSE. THE WORK PROVIDED HEREUNDER IS ON AN \"AS IS\" BASIS, AND\n\nTHE TAMPERE UNIVERSITY HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,\n\nUPDATES, ENHANCEMENTS, OR MODIFICATIONS."
+      },
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Anssi Klapuri",
+          "email": "anssi@yousician.com"
+        },
+        "annotator": {
+          "bibtex": "@article{Klapuri2006,\n    Author = \"Klapuri, Anssi P. and Eronen, Antti J. and Astola, Jaakko\",\n    Journal = \"IEEE Transactions on Audio, Speech and Language Processing\",\n    Number = \"1\",\n    Pages = \"342--355\",\n    Title = \"Analysis of the meter of acoustic musical signals\",\n    Volume = \"14\",\n    Year = \"2006\"\n}\n"
+        },
+        "version": "1.0",
+        "corpus": "klapuri",
+        "annotation_tools": "",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "manual annotation"
+      },
+      "namespace": "tag_open",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": "4 beats/measure",
+          "confidence": 1.0
+        },
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": "electronic/dance",
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {
+        "license": "Copyright (c) 2019 Tampere University and its licensors\n\nAll rights reserved.\n\nPermission is hereby granted, without written agreement and without license or royalty\n\nfees, to use and copy the beat and measure (aka barline or downbeat) annotations (\"Work\") of the music database described in article \"Analysis of the meter of acoustic musical signals\", Klapuri, A., Eronen, A., Astola, J.,  IEEE Trans. Audio, Speech, and Language\n\nProcessing, 14(1), 2006.\n\n\n\nThis grant is only for experimental and non-commercial\n\npurposes, provided that the copyright notice in its entirety appear in all copies of this Work,\n\nand the original article describing the use of this Work (Klapuri, A., Eronen, A., Astola, J., \"Analysis of the meter of acoustic musical signals ,\" IEEE Trans. Audio, Speech, and Language Processing, 14(1), 2006), is acknowledged in any publication that reports research using this Work.\n\nAny commercial use of the Work or any part thereof is strictly prohibited.\n\nCommercial use include, but is not limited to:\n\n- selling or reproducing the Work\n\n- selling or distributing the results or content achieved by use of the Work\n\n- providing services by using the Work.\n\n\n\nIN NO EVENT SHALL TAMPERE UNIVERSITY OR ITS LICENSORS BE LIABLE TO ANY PARTY\n\nFOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE\n\nOF THIS WORK AND ITS DOCUMENTATION, EVEN IF TAMPERE UNIVERSITY OR ITS\n\nLICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n\n\nTAMPERE UNIVERSITY AND ALL ITS LICENSORS SPECIFICALLY DISCLAIMS ANY\n\nWARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND\n\nFITNESS FOR A PARTICULAR PURPOSE. THE WORK PROVIDED HEREUNDER IS ON AN \"AS IS\" BASIS, AND\n\nTHE TAMPERE UNIVERSITY HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,\n\nUPDATES, ENHANCEMENTS, OR MODIFICATIONS."
+      },
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "Forever",
+    "artist": "Orbital",
+    "release": "",
+    "duration": 99999,
+    "identifiers": {
+      "file": "forever.wav"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}

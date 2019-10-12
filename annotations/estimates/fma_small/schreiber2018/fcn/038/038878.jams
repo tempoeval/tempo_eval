@@ -1,0 +1,48 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "0.0.2",
+        "corpus": "fma_small",
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 30.01469387755102,
+          "value": 75,
+          "confidence": 2.346140354347881e-05
+        },
+        {
+          "time": 0.0,
+          "duration": 30.01469387755102,
+          "value": 150,
+          "confidence": 0.9999765385964565
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 30.01469387755102
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 30.01469387755102,
+    "identifiers": {
+      "file": "038878.mp3"
+    },
+    "jams_version": "0.3.2"
+  },
+  "sandbox": {}
+}

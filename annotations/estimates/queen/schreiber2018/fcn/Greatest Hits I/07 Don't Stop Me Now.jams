@@ -1,0 +1,48 @@
+{
+  "file_metadata": {
+    "title": "",
+    "release": "",
+    "identifiers": {
+      "file": "07 Don't Stop Me Now.wav"
+    },
+    "duration": 211.73333333333332,
+    "jams_version": "0.3.3",
+    "artist": ""
+  },
+  "annotations": [
+    {
+      "time": 0,
+      "annotation_metadata": {
+        "corpus": "",
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "validation": "",
+        "annotation_rules": "",
+        "version": "0.0.3",
+        "annotator": {},
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "data": [
+        {
+          "duration": 211.73333333333332,
+          "time": 0.0,
+          "value": 100,
+          "confidence": 0.11875448375940323
+        },
+        {
+          "duration": 211.73333333333332,
+          "time": 0.0,
+          "value": 157,
+          "confidence": 0.8812455162405968
+        }
+      ],
+      "duration": 211.73333333333332,
+      "namespace": "tempo",
+      "sandbox": {}
+    }
+  ],
+  "sandbox": {}
+}

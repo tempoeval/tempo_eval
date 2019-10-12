@@ -1,0 +1,46 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Hendrik Schreiber",
+          "email": "hs@tagtraum.com"
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Schreiber2018a,\n    Author = {Schreiber, Hendrik and M{\\\"u}ller, Meinard},\n    Address = \"Paris, France\",\n    Booktitle = \"Proceedings of the 19th International Society for Music Information Retrieval Conference ({ISMIR})\",\n    Month = \"September\",\n    Title = \"A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network\",\n    Year = \"2018\"\n}\n",
+          "ref_url": "http://www.tagtraum.com/tempo_estimation.html"
+        },
+        "version": "1.0",
+        "corpus": "lmd_tempo",
+        "annotation_tools": "Schreiber2017, MIDI parser",
+        "annotation_rules": "Consensus between Schreiber2017 and MIDI messages (2% tolerance).",
+        "validation": "",
+        "data_source": "LMD 0.1, https://colinraffel.com/projects/lmd/"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 126.99911,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 59.94739229024943,
+    "identifiers": {
+      "file": "TRCAJLS128F935179E.mp3",
+      "msd_id": "TRCAJLS128F935179E"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}

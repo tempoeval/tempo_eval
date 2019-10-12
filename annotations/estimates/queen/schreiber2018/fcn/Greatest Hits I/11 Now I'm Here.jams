@@ -1,0 +1,48 @@
+{
+  "file_metadata": {
+    "title": "",
+    "release": "",
+    "identifiers": {
+      "file": "11 Now I'm Here.wav"
+    },
+    "duration": 255.24,
+    "jams_version": "0.3.3",
+    "artist": ""
+  },
+  "annotations": [
+    {
+      "time": 0,
+      "annotation_metadata": {
+        "corpus": "",
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "validation": "",
+        "annotation_rules": "",
+        "version": "0.0.3",
+        "annotator": {},
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "data": [
+        {
+          "duration": 255.24,
+          "time": 0.0,
+          "value": 68,
+          "confidence": 0.18188905715942383
+        },
+        {
+          "duration": 255.24,
+          "time": 0.0,
+          "value": 133,
+          "confidence": 0.8181109428405762
+        }
+      ],
+      "duration": 255.24,
+      "namespace": "tempo",
+      "sandbox": {}
+    }
+  ],
+  "sandbox": {}
+}

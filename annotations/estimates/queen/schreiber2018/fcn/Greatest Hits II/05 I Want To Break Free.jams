@@ -1,0 +1,48 @@
+{
+  "file_metadata": {
+    "title": "",
+    "release": "",
+    "identifiers": {
+      "file": "05 I Want To Break Free.wav"
+    },
+    "duration": 258.73333333333335,
+    "jams_version": "0.3.3",
+    "artist": ""
+  },
+  "annotations": [
+    {
+      "time": 0,
+      "annotation_metadata": {
+        "corpus": "",
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "validation": "",
+        "annotation_rules": "",
+        "version": "0.0.3",
+        "annotator": {},
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "data": [
+        {
+          "duration": 258.73333333333335,
+          "time": 0.0,
+          "value": 54,
+          "confidence": 0.07462058961391449
+        },
+        {
+          "duration": 258.73333333333335,
+          "time": 0.0,
+          "value": 109,
+          "confidence": 0.9253794103860855
+        }
+      ],
+      "duration": 258.73333333333335,
+      "namespace": "tempo",
+      "sandbox": {}
+    }
+  ],
+  "sandbox": {}
+}

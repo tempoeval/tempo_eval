@@ -1,0 +1,48 @@
+{
+  "file_metadata": {
+    "title": "",
+    "release": "",
+    "identifiers": {
+      "file": "11 Let Me Live.wav"
+    },
+    "duration": 285.7733333333333,
+    "jams_version": "0.3.3",
+    "artist": ""
+  },
+  "annotations": [
+    {
+      "time": 0,
+      "annotation_metadata": {
+        "corpus": "",
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "validation": "",
+        "annotation_rules": "",
+        "version": "0.0.3",
+        "annotator": {},
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "data": [
+        {
+          "duration": 285.7733333333333,
+          "time": 0.0,
+          "value": 78,
+          "confidence": 0.8817223310470581
+        },
+        {
+          "duration": 285.7733333333333,
+          "time": 0.0,
+          "value": 157,
+          "confidence": 0.1182776689529419
+        }
+      ],
+      "duration": 285.7733333333333,
+      "namespace": "tempo",
+      "sandbox": {}
+    }
+  ],
+  "sandbox": {}
+}

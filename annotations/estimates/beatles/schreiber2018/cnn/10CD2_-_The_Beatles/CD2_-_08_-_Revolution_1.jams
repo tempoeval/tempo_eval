@@ -1,0 +1,48 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "0.0.2",
+        "corpus": "beatles",
+        "annotation_tools": "schreiber tempo-cnn (model=cnn), https://github.com/hendriks73/tempo-cnn",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 255.73877551020408,
+          "value": 102,
+          "confidence": 0.796002209186554
+        },
+        {
+          "time": 0.0,
+          "duration": 255.73877551020408,
+          "value": 200,
+          "confidence": 0.20399779081344604
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 255.73877551020408
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 255.73877551020408,
+    "identifiers": {
+      "file": "CD2_-_08_-_Revolution_1.wav"
+    },
+    "jams_version": "0.3.2"
+  },
+  "sandbox": {}
+}

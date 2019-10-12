@@ -1,0 +1,48 @@
+{
+  "file_metadata": {
+    "title": "",
+    "release": "",
+    "identifiers": {
+      "file": "02 Under Pressure.wav"
+    },
+    "duration": 248.66666666666666,
+    "jams_version": "0.3.3",
+    "artist": ""
+  },
+  "annotations": [
+    {
+      "time": 0,
+      "annotation_metadata": {
+        "corpus": "",
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "validation": "",
+        "annotation_rules": "",
+        "version": "0.0.3",
+        "annotator": {},
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "data": [
+        {
+          "duration": 248.66666666666666,
+          "time": 0.0,
+          "value": 60,
+          "confidence": 0.025043485686182976
+        },
+        {
+          "duration": 248.66666666666666,
+          "time": 0.0,
+          "value": 120,
+          "confidence": 0.974956514313817
+        }
+      ],
+      "duration": 248.66666666666666,
+      "namespace": "tempo",
+      "sandbox": {}
+    }
+  ],
+  "sandbox": {}
+}

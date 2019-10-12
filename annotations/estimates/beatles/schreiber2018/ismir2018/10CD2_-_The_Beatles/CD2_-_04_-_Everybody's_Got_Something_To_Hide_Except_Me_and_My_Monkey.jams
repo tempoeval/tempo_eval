@@ -1,0 +1,48 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "0.0.2",
+        "corpus": "beatles",
+        "annotation_tools": "schreiber tempo-cnn (model=ismir2018), https://github.com/hendriks73/tempo-cnn",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 144.82285714285715,
+          "value": 116,
+          "confidence": 0.9697998762130737
+        },
+        {
+          "time": 0.0,
+          "duration": 144.82285714285715,
+          "value": 232,
+          "confidence": 0.03020012378692627
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 144.82285714285715
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 144.82285714285715,
+    "identifiers": {
+      "file": "CD2_-_04_-_Everybody's_Got_Something_To_Hide_Except_Me_and_My_Monkey.wav"
+    },
+    "jams_version": "0.3.2"
+  },
+  "sandbox": {}
+}

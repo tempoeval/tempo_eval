@@ -1,0 +1,48 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "0.0.2",
+        "corpus": "beatles",
+        "annotation_tools": "schreiber tempo-cnn (model=cnn), https://github.com/hendriks73/tempo-cnn",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 162.37714285714284,
+          "value": 59,
+          "confidence": 0.27539604902267456
+        },
+        {
+          "time": 0.0,
+          "duration": 162.37714285714284,
+          "value": 119,
+          "confidence": 0.7246039509773254
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 162.37714285714284
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 162.37714285714284,
+    "identifiers": {
+      "file": "07_-_Michelle.wav"
+    },
+    "jams_version": "0.3.2"
+  },
+  "sandbox": {}
+}

@@ -1,0 +1,50 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Boeck2015,\n    Author = {B{\\\"o}ck, Sebastian and Krebs, Florian and Widmer, Gerhard},\n    Address = \"M{\\'a}laga, Spain\",\n    Booktitle = \"Proceedings of the 16th International Society for Music Information Retrieval Conference ({ISMIR})\",\n    Pages = \"625--631\",\n    Title = \"Accurate Tempo Estimation Based on Recurrent Neural Networks and Resonating Comb Filters.\",\n    Year = \"2015\"\n}\n"
+        },
+        "version": "0.17.dev0",
+        "corpus": "fma_medium",
+        "annotation_tools": "TempoDetector.2016, madmom, https://github.com/CPJKU/madmom",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": ""
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 42.55,
+          "confidence": 0.38
+        },
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 127.66,
+          "confidence": 0.62
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 30.01469387755102,
+    "identifiers": {
+      "file": "022040.mp3"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}

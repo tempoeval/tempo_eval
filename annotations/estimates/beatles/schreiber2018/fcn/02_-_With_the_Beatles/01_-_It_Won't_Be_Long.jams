@@ -1,0 +1,48 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "0.0.2",
+        "corpus": "beatles",
+        "annotation_tools": "schreiber tempo-cnn (model=fcn), https://github.com/hendriks73/tempo-cnn",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 133.74693877551022,
+          "value": 67,
+          "confidence": 0.10363581776618958
+        },
+        {
+          "time": 0.0,
+          "duration": 133.74693877551022,
+          "value": 133,
+          "confidence": 0.8963641822338104
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 133.74693877551022
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 133.74693877551022,
+    "identifiers": {
+      "file": "01_-_It_Won't_Be_Long.wav"
+    },
+    "jams_version": "0.3.2"
+  },
+  "sandbox": {}
+}

@@ -1,0 +1,44 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Alonso2004,\n    Author = {Alonso, Miguel and David, Bertrand and Richard, Ga{\\\"e}l},\n    Address = \"Barcelona, Spain\",\n    Booktitle = \"Proceedings of the 5th International Society for Music Information Retrieval Conference ({ISMIR})\",\n    Pages = \"158--163\",\n    Title = \"Tempo and beat estimation of musical signals\",\n    Year = \"2004\"\n}\n"
+        },
+        "version": "1.0",
+        "corpus": "ismir2004songs",
+        "annotation_tools": "AlonsoSP, see also: Fabien Gouyon, Anssi P. Klapuri, Simon Dixon, Miguel Alonso, George Tzanetakis, Christian Uhle, and Pedro Cano. An experimental comparison of audio tempo induction algorithms. IEEE Transactions on Audio, Speech, and Language Processing, 14(5):1832\\u2013 1844, 2006.",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "ISMIR 2004 Songs contest results, http://www.iua.upf.edu/mtg/ismir2004/contest/tempoContest/data3.tar.gz"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 67.3682,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 20.0,
+    "identifiers": {
+      "file": "02-Hyperballad.wav"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}

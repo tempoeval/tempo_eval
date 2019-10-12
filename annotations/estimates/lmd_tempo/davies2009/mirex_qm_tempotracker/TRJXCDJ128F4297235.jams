@@ -1,0 +1,53 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {
+          "bibtex": [
+            "@inproceedings{Davies2009,\n    Author = \"Davies, Matthew E.P. and Plumbley, Mark D. and Eck, Douglas\",\n    Address = \"New Paltz, NY, USA\",\n    Booktitle = \"Proceedings of the {IEEE} Workshop on Applications of Signal Processing to Audio and Acoustics ({WASPAA})\",\n    Month = \"October\",\n    Organization = \"IEEE\",\n    Pages = \"61--64\",\n    Title = \"Towards a musical beat emphasis function\",\n    Year = \"2009\"\n}\n",
+            "@article{Davies2007,\n    Author = \"Davies, Matthew E.P. and Plumbley, Mark D.\",\n    Journal = \"IEEE Transactions on Audio, Speech and Language Processing\",\n    Number = \"3\",\n    Pages = \"1009-1020\",\n    Title = \"Context-Dependent Beat Tracking of Musical Audio\",\n    Volume = \"15\",\n    Year = \"2007\"\n}\n"
+          ]
+        },
+        "version": "1.0",
+        "corpus": "lmd_tempo",
+        "annotation_tools": "QM Tempotracker, Sonic Annotator plugin. https://code.soundsoftware.ac.uk/projects/mirex2013/repository/show/audio_tempo_estimation/qm-tempotracker Note that the current macOS build of 'qm-vamp-plugins' was used.",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": ""
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 66.256,
+          "confidence": 0.1
+        },
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 132.512,
+          "confidence": 0.9
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 29.988208616780046,
+    "identifiers": {
+      "file": "TRJXCDJ128F4297235.mp3"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}

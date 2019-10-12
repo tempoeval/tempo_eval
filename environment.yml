@@ -1,0 +1,23 @@
+channels:
+  - defaults
+  - conda-forge
+  - pypi
+
+dependencies:
+  - python=3.7
+  - pip
+  - numpy
+  - scipy
+  - coverage
+  - scikit-learn!=0.19.0
+  - statsmodels
+  - matplotlib
+  - pandas
+  - pybtex
+  - markdown
+  - pygam
+  - numba>=0.44.0, <0.45.2
+  - pip:
+    - python-coveralls
+    - pygal
+    - jams

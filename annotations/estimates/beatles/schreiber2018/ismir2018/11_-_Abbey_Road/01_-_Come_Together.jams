@@ -1,0 +1,48 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "0.0.2",
+        "corpus": "beatles",
+        "annotation_tools": "schreiber tempo-cnn (model=ismir2018), https://github.com/hendriks73/tempo-cnn",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": "Hendrik Schreiber, Meinard M\u00fcller. A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network. In Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris, France, Sept. 2018."
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 260.6497959183674,
+          "value": 84,
+          "confidence": 0.8377178907394409
+        },
+        {
+          "time": 0.0,
+          "duration": 260.6497959183674,
+          "value": 162,
+          "confidence": 0.16228210926055908
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 260.6497959183674
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 260.6497959183674,
+    "identifiers": {
+      "file": "01_-_Come_Together.wav"
+    },
+    "jams_version": "0.3.2"
+  },
+  "sandbox": {}
+}
