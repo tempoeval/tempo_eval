@@ -16,6 +16,8 @@ It documents strengths and weaknesses of classic as well
 as modern tempo estimation approaches on multiple versions of
 commonly used datasets using a variety of metrics.
 
+For evaluation results, please see `here<https://tempoeval.github.io/tempo_eval/report/index.html`_.
+
 
 Repository
 ----------
