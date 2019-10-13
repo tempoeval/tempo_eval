@@ -230,8 +230,9 @@ def print_report(output_dir: str = './',
         jekyll = format == 'kramdown'
         kramdown = format == 'kramdown'
         md = MarkdownWriter(f, jekyll=jekyll, kramdown=kramdown)
-        md.h1('tempo_eval')
-        md.paragraph('Detailed evaluations for the following corpora:')
+        md.h1('tempo_eval_report')
+        md.paragraph('Detailed global tempo estimation evaluations created with [tempo_eval](https://tempoeval.github.io/tempo_eval/).')
+        md.paragraph('Evaluated corpora:')
         for corpus_name, corpus_file in zip(corpora, corpus_files):
             md.write('- ')
             md.link(corpus_name, basename(corpus_file))
@@ -379,14 +380,16 @@ def print_corpus_report(corpus_name: str,
         else:
             md.h1(corpus_name)
 
-        md.paragraph('This is the tempo_eval report for the \'{}\' corpus.'.format(corpus_name))
+        md.paragraph('This is the [tempo_eval](https://tempoeval.github.io/tempo_eval/) report for the \'{}\' corpus.'.format(corpus_name))
 
         if not html:
+            md.paragraph('Reports for other corpora may be found [here](index.md).')
             # the following line will be replaced by kramdown
             # see https://kramdown.gettalong.org/converter/html.html#toc
             md.h2('Table of Contents' + '\n{:.no_toc}')
             md.paragraph('- TOC\n{:toc}')
         else:
+            md.paragraph('Reports for other corpora may be found [here](index.html).')
             md.h2('Table of Contents')
             md.paragraph('[TOC]')  # will be replace by toc markdown extension
 
@@ -395,10 +398,11 @@ def print_corpus_report(corpus_name: str,
                 # we have two estimates, but no reference.
                 # pick one as reference (sort alphanumerically, pick first)
                 tempo_references, tempo_estimates = _alphanumeric_split(tempo_estimates)
-                md.blockquote('Because reference annotations are '
-                              'not available, we treat the *estimate* {} '
-                              'as reference.'
-                              .format(md.to_headline_link(list(tempo_references.keys())[0])))
+                md.paragraph('Because reference annotations are '
+                             'not available, we treat the *estimate* {} '
+                             'as reference.'
+                             .format(md.to_headline_link(list(tempo_references.keys())[1])),
+                             strong=True)
             else:
                 # we have 2 or more estimates, pick the one
                 # with the highest average agreement as reference
@@ -537,9 +541,7 @@ def _print_all_corpora_tempo_variation(md: MarkdownWriter,
     values_df.index.name = 'τ'
 
     _print_line_graph(md, 'all_variation', values_df,
-                      caption='Fraction of the dataset with beat-annotated '
-                              'tracks, where beats/track fall below a given '
-                              'coefficient of variation τ.',
+                      caption='Fraction of the dataset with beat-annotated tracks with c<sub>var</sub> < τ.'
                       y_axis_label='Fraction of Dataset (%)',
                       output_dir=output_dir)
 
