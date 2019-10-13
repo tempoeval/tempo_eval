@@ -11,7 +11,7 @@ The goal of `tempo_eval` is to make evaluation of global tempo estimation system
 Eval Report
 -----------
 
-Please see [here](https://tempoeval.github.io/tempo_eval/report/index.html).
+Please see [here](https://tempoeval.github.io/tempo_eval_report/index.html).
 
 
 Documentation
