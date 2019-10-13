@@ -541,7 +541,7 @@ def _print_all_corpora_tempo_variation(md: MarkdownWriter,
     values_df.index.name = 'τ'
 
     _print_line_graph(md, 'all_variation', values_df,
-                      caption='Fraction of the dataset with beat-annotated tracks with c<sub>var</sub> < τ.'
+                      caption='Fraction of the dataset with beat-annotated tracks with c<sub>var</sub> < τ.',
                       y_axis_label='Fraction of Dataset (%)',
                       output_dir=output_dir)
 
