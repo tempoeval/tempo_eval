@@ -1,0 +1,50 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Boeck2019,\n    Author = {B{\\\"o}ck, Sebastian and Davies, Matthew E.P. and Knees, Peter},\n    Address = \"Delft, The Netherlands\",\n    Booktitle = \"Proceedings of the 20th International Society for Music Information Retrieval Conference ({ISMIR})\",\n    Month = \"November\",\n    Pages = \"486--493\",\n    Title = \"Multi-Task Learning of Tempo and Beat: Learning One to Improve the Other\",\n    Year = \"2019\"\n}\n"
+        },
+        "version": "0.0.1",
+        "corpus": "smc_mirex",
+        "annotation_tools": "model=multi_task_hjdb, https://github.com/superbock/ISMIR2019",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": ""
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 79.22,
+          "confidence": 0.95
+        },
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 39.69,
+          "confidence": 0.050000000000000044
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 40.0,
+    "identifiers": {
+      "file": "SMC_209.wav"
+    },
+    "jams_version": "0.3.1"
+  },
+  "sandbox": {}
+}
