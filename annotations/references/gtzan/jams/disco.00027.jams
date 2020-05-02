@@ -494,12 +494,6 @@
         {
           "time": 0.0,
           "duration": NaN,
-          "value": "4/4",
-          "confidence": 1.0
-        },
-        {
-          "time": 0.0,
-          "duration": NaN,
           "value": "no_ternary",
           "confidence": 1.0
         },
@@ -507,6 +501,12 @@
           "time": 0.0,
           "duration": NaN,
           "value": "no_swing",
+          "confidence": 1.0
+        },
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": "4/4",
           "confidence": 1.0
         }
       ],
@@ -554,10 +554,10 @@
           "bibtex": "@inproceedings{Marchand2015,\n    Author = \"Marchand, Ugo and Peeters, Geoffroy\",\n    Address = \"Trondheim, Norway\",\n    Booktitle = \"{Digital Audio Effects 2015 (Dafx15)}\",\n    Month = \"November\",\n    Title = \"Swing Ratio Estimation\",\n    Year = \"2015\"\n}\n",
           "ref_url": "https://hal.archives-ouvertes.fr/hal-01252603/document"
         },
-        "version": "GTZAN-Rhythm_v2_ismir2015_lbd_2015-10-28",
+        "version": "GTZAN-Rhythm_v2_ismir2015_lbd_2015-10-28_ICBI",
         "corpus": "GTZAN",
         "annotation_tools": "derived from beat annotations",
-        "annotation_rules": "median of inter beat intervals",
+        "annotation_rules": "median of inter corresponding beat intervals (ICBI)",
         "validation": "",
         "data_source": "manual annotation"
       },
@@ -567,6 +567,36 @@
           "time": 0.0,
           "duration": NaN,
           "value": 111.1391274328241,
+          "confidence": 1.0
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": null
+    },
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "Ugo Marchand & Quentin Fresnel",
+          "email": "ugo.marchand@ircam.fr"
+        },
+        "annotator": {
+          "bibtex": "@inproceedings{Marchand2015,\n    Author = \"Marchand, Ugo and Peeters, Geoffroy\",\n    Address = \"Trondheim, Norway\",\n    Booktitle = \"{Digital Audio Effects 2015 (Dafx15)}\",\n    Month = \"November\",\n    Title = \"Swing Ratio Estimation\",\n    Year = \"2015\"\n}\n",
+          "ref_url": "https://hal.archives-ouvertes.fr/hal-01252603/document"
+        },
+        "version": "GTZAN-Rhythm_v2_ismir2015_lbd_2015-10-28_IBI",
+        "corpus": "GTZAN",
+        "annotation_tools": "derived from beat annotations",
+        "annotation_rules": "median of inter beat intervals (IBI)",
+        "validation": "",
+        "data_source": "manual annotation"
+      },
+      "namespace": "tempo",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": NaN,
+          "value": 111.1391016996874,
           "confidence": 1.0
         }
       ],

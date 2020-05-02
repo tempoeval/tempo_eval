@@ -42,8 +42,14 @@ def parse_marchand2015():
             # iterate over beats
             beats = jam.annotations['beat'][0]['data']
             timestamps = [b.time for b in beats]
+
+            # ICBI-based
             median_bpm, _, std, cv = timestamps_to_bpm(timestamps, meter)
-            jam.annotations.append(_create_marchand2015_tempo_annotation(median_bpm))
+            jam.annotations.append(_create_marchand2015_median_cor_beat_tempo_annotation(median_bpm))
+
+            # IBI-based
+            median_bpm, _, std, cv = timestamps_to_bpm(timestamps)
+            jam.annotations.append(_create_marchand2015_median_beat_tempo_annotation(median_bpm))
 
             # derive some additional tags from first sandbox
             sandbox0 = jam.annotations['tag_open'][0]['sandbox']
@@ -137,15 +143,29 @@ def _create_tzanetakis2013_genre_annotation(genre):
     return tag
 
 
-def _create_marchand2015_tempo_annotation(bpm):
+def _create_marchand2015_median_beat_tempo_annotation(bpm):
     tempo = create_tempo_annotation(bpm)
     tempo.annotation_metadata = jams.AnnotationMetadata(
         corpus=GTZAN,
-        version='GTZAN-Rhythm_v2_ismir2015_lbd_2015-10-28',
+        version='GTZAN-Rhythm_v2_ismir2015_lbd_2015-10-28_IBI',
         curator=jams.Curator(name='Ugo Marchand & Quentin Fresnel', email='ugo.marchand@ircam.fr'),
         data_source='manual annotation',
         annotation_tools='derived from beat annotations',
-        annotation_rules='median of inter beat intervals',
+        annotation_rules='median of inter beat intervals (IBI)',
+        annotator={'bibtex': get_bibtex_entry('Marchand2015'),
+                   'ref_url': 'https://hal.archives-ouvertes.fr/hal-01252603/document'})
+    return tempo
+
+
+def _create_marchand2015_median_cor_beat_tempo_annotation(bpm):
+    tempo = create_tempo_annotation(bpm)
+    tempo.annotation_metadata = jams.AnnotationMetadata(
+        corpus=GTZAN,
+        version='GTZAN-Rhythm_v2_ismir2015_lbd_2015-10-28_ICBI',
+        curator=jams.Curator(name='Ugo Marchand & Quentin Fresnel', email='ugo.marchand@ircam.fr'),
+        data_source='manual annotation',
+        annotation_tools='derived from beat annotations',
+        annotation_rules='median of inter corresponding beat intervals (ICBI)',
         annotator={'bibtex': get_bibtex_entry('Marchand2015'),
                    'ref_url': 'https://hal.archives-ouvertes.fr/hal-01252603/document'})
     return tempo
