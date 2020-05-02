@@ -768,7 +768,9 @@ def get_references_path(dataset: str = None,
     rel_path = join('annotations', 'references', dataset, folder_name)
     if file_name is not None:
         rel_path = join(rel_path, file_name)
-    return get_data(rel_path) + os.sep
+        return get_data(rel_path)
+    else:
+        return get_data(rel_path) + os.sep
 
 
 def get_estimates_path(dataset: str = None,
@@ -787,7 +789,9 @@ def get_estimates_path(dataset: str = None,
         rel_path = join(rel_path, folder_name)
     if file_name is not None:
         rel_path = join(rel_path, file_name)
-    return get_data(rel_path) + os.sep
+        return get_data(rel_path)
+    else:
+        return get_data(rel_path) + os.sep
 
 
 def list_reference_corpus_names() -> List[str]:
