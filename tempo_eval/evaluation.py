@@ -216,32 +216,32 @@ class Metric:
 
                     if item_id in specific_estimated_tempi:
                         estimated_tempo = specific_estimated_tempi[item_id]
+                        if estimated_tempo <= 0.0:
+                            logger.warning('Estimate {} BPM by \'{}\' for \'{}\' is <= 0.0 BPM. '
+                                           'Reference tempo in \'{}\' '
+                                           'is {} BPM. '
+                                           'We will ignore this estimate and treat it as \'no value\'.'
+                                           .format(estimated_tempo,
+                                                   estimator, item_id,
+                                                   groundtruth_version,
+                                                   reference_tempo))
+                            estimated_tempo = None
                     else:
-                        estimated_tempo = None
-                        logger.warning('Failed to find item \'{}\' in estimate \'{}\'.'
+                        logger.warning('Failed to find item \'{}\' in estimates by \'{}\'.'
                                        .format(item_id, estimator))
+                        estimated_tempo = None
 
                     comparison_results = [eval_function(reference_tempo,
                                                         estimated_tempo)
                                           for eval_function in eval_functions]
                     if estimated_tempo is not None and np.isnan(np.sum(comparison_results)):
                         with objmode():
-                            if estimated_tempo == 0.0:
-                                logger.warning('Estimate by \'{}\' for \'{}\' is 0.0. '
-                                               'Reference tempo in \'{}\' '
-                                               'is {}. '
-                                               'To signal no value, please remove the '
-                                               'estimate rather than setting it to 0.0.'
-                                               .format(estimator, item_id,
-                                                       groundtruth_version,
-                                                       reference_tempo))
-                            else:
-                                logger.warning('Metric {} returned nan: '
-                                               'item={}, estimator={}, estimate={}, '
-                                               'reference_version={}, reference={}'
-                                               .format(self.name,
-                                                       item_id, estimator, estimated_tempo,
-                                                       groundtruth_version, reference_tempo))
+                            logger.warning('Metric {} returned nan: '
+                                           'item={}, estimator={}, estimate={} BPM, '
+                                           'reference_version={}, reference={} BPM'
+                                           .format(self.name,
+                                                   item_id, estimator, estimated_tempo,
+                                                   groundtruth_version, reference_tempo))
                     result[groundtruth_version][estimator][item_id] = comparison_results
         return result
 
@@ -250,6 +250,9 @@ class Metric:
                  undefined_value: float = None) -> AverageResults:
         """
         Calculate means and standard deviations for the given evaluation results.
+        Possible INF and NaN values will be masked, i.e., ignored.
+        This means that if an algorithms did not produce a valid estimate, averages
+        and standard deviations will be computed without that value.
 
         :param undefined_value: value to use, if no data is available. Defaults to
             ``self.best_value``.
@@ -274,7 +277,7 @@ class Metric:
                     averages[groundtruth_version][estimator] = [undefined_value], [undefined_value]
                     continue
 
-                # mask invalid, because APE can be INF.
+                # mask invalid, because APE can be INF and OE can be NaN
                 masked_invalid_filtered_values = np.ma.masked_invalid(filtered_values)
                 m = np.asarray(np.mean(masked_invalid_filtered_values, axis=0))
                 s = np.asarray(np.std(masked_invalid_filtered_values, axis=0))
