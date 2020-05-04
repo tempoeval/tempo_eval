@@ -105,6 +105,8 @@ $CONTENT
 </html>
 """
 
+logger = logging.getLogger('tempo_eval')
+
 
 class Size(IntEnum):
     """
@@ -167,7 +169,8 @@ def print_report(output_dir: str = './',
     corpora = []
     if corpus_names:
         corpora.extend(corpus_names)
-        logging.debug('Explicitly specified corpora: {}'.format(corpus_names))
+        logger.debug('Explicitly specified corpora: {}'
+                     .format(corpus_names))
 
     additional_estimates = {}
     if estimates_dir is not None:
@@ -179,7 +182,8 @@ def print_report(output_dir: str = './',
                                                 split_by_corpus=True)
         found_corpora = list(additional_estimates.keys())
         corpora.extend(found_corpora)
-        logging.debug('Found corpora in specified estimates: {}'.format(found_corpora))
+        logger.debug('Found corpora in specified estimates: {}'
+                     .format(found_corpora))
 
     additional_references = {}
     if references_dir is not None:
@@ -191,20 +195,22 @@ def print_report(output_dir: str = './',
                                                  split_by_corpus=True)
         found_corpora = list(additional_references.keys())
         corpora.extend(found_corpora)
-        logging.debug('Found corpora in specified references: {}'.format(found_corpora))
+        logger.debug('Found corpora in specified references: {}'
+                     .format(found_corpora))
 
     # fall back to built-in corpus references
     if not corpora:
         corpora = list_reference_corpus_names()
         corpora.extend(list_estimate_corpus_names())
-        logging.debug('Found corpora in built-in annotations: {}'.format(corpora))
+        logger.debug('Found corpora in built-in annotations: {}'
+                     .format(corpora))
 
     corpora = sorted(list(set(corpora)))
     if not corpora:
-        logging.error('No corpora found.')
+        logger.error('No corpora found.')
         return None
 
-    logging.debug('Effective corpora: {}'.format(corpora))
+    logger.debug('Effective corpora: {}'.format(corpora))
 
     corpus_files = []
     for corpus_name in corpora:
@@ -247,7 +253,7 @@ def print_report(output_dir: str = './',
     if format == 'html':
         file_name = convert_md_to_html(file_name)
 
-    logging.info('Done. The main report page can be found at {}'.format(file_name))
+    logger.info('Done. The main report page can be found at {}'.format(file_name))
     return file_name
 
 
@@ -283,8 +289,8 @@ def print_corpus_report(corpus_name: str,
     if format not in ['kramdown', 'markdown', 'html']:
         raise ValueError('Unsupported output format: {}'.format(format))
 
-    logging.info('Creating report for \'{}\'...'.format(corpus_name))
-    logging.debug('Loading annotations...')
+    logger.info('Creating report for corpus \'{}\' ...'.format(corpus_name))
+    logger.debug('Loading annotations...')
 
     def merge_annotations(existing_annotations, additional_annotations):
 
@@ -312,9 +318,9 @@ def print_corpus_report(corpus_name: str,
                             .format(getpass.getuser(),
                                     version, random.randint(10000, 99999))\
                             .replace(' ', '_')
-                    logging.info('Annotations with version \'{}\' already '
-                                 'exists and will be replaced with \'{}\'.'
-                                 .format(version, new_version))
+                    logger.info('Annotations with version \'{}\' already '
+                                'exists and will be replaced with \'{}\'.'
+                                .format(version, new_version))
                     ex[new_version] = ad[version]
                 else:
                     ex[version] = ad[version]
@@ -323,10 +329,10 @@ def print_corpus_report(corpus_name: str,
     estimates = {}
     try:
         estimates = read_estimate_annotations(corpus_name, validate=validate)
-        logging.info('Found built-in estimates: {}'.format(list(estimates.keys())))
+        logger.info('Found built-in estimates: {}'.format(list(estimates.keys())))
     except FileNotFoundError as fnfe:
-        logging.error('Failed to read built-in estimates for corpus \'{}\' ({})'
-                      .format(corpus_name, fnfe))
+        logger.warning('Failed to read built-in estimates for corpus \'{}\' ({})'
+                       .format(corpus_name, fnfe))
 
     if additional_estimates:
         estimates = merge_annotations(estimates, additional_estimates)
@@ -342,10 +348,10 @@ def print_corpus_report(corpus_name: str,
                                                            'tag_fma_genre', 'tempo',
                                                            'beat'],
                                                 validate=validate)
-        logging.info('Found built-in references: {}'.format(list(references.keys())))
+        logger.info('Found built-in references: {}'.format(list(references.keys())))
     except FileNotFoundError as fnfe:
-        logging.error('Failed to read built-in references for corpus \'{}\' ({})'
-                      .format(corpus_name, fnfe))
+        logger.warning('Failed to read built-in references for corpus \'{}\' ({})'
+                       .format(corpus_name, fnfe))
 
     if additional_references:
         references = merge_annotations(references, additional_references)
@@ -359,7 +365,7 @@ def print_corpus_report(corpus_name: str,
     if 'tag_fma_genre' in references:
         tag_references['tag_fma_genre'] = references['tag_fma_genre']
 
-    logging.debug('Annotations loaded.')
+    logger.debug('Annotations loaded.')
 
     smkdirs(output_dir)
     file_name = join(output_dir, '{}.md'.format(corpus_name
@@ -421,14 +427,14 @@ def print_corpus_report(corpus_name: str,
                                   output_dir=output_dir, size=size)
         else:
             md.blockquote('No reference Jams found.')
-            logging.warning('No reference Jams found for corpus {}'.format(corpus_name))
+            logger.warning('No reference Jams found for corpus {}'.format(corpus_name))
         if tempo_estimates:
             _print_estimates_eval(md, corpus_name, tempo_references, tempo_estimates,
                                   beat_references, tag_references, output_dir=output_dir,
                                   size=size)
         else:
-            md.blockquote('No estimate Jams found.')
-            logging.warning('No estimate Jams found for corpus {}'.format(corpus_name))
+            md.blockquote('No estimate JAMS found.')
+            logger.warning('No estimate JAMS found for corpus {}'.format(corpus_name))
         _print_generation_date(md, size=size)
 
     if format == 'html':
@@ -456,7 +462,7 @@ def _print_reference_eval(md: MarkdownWriter,
     :param size: size
     """
 
-    logging.info('Printing reference report...')
+    logger.info('Printing reference report {}...'.format(corpus_name))
 
     md.h1('References for \'{}\''.format(corpus_name))
     md.h2('References')
@@ -533,8 +539,8 @@ def _print_all_corpora_tempo_variation(md: MarkdownWriter,
                 y_values.update({'{} {}'.format(corpus_name, l): fractions_lt_c_var[l]
                                  for l in fractions_lt_c_var.keys()})
         except FileNotFoundError as fnfe:
-            logging.error('Failed to read built-in beat estimates for corpus \'{}\' ({})'
-                          .format(corpus_name, fnfe))
+            logger.warning('Failed to read built-in beat estimates for corpus \'{}\' ({})'
+                           .format(corpus_name, fnfe))
 
     values_df = pd.DataFrame(y_values, index=cv_tresholds)
     values_df.name = 'Fraction of Dataset Below Coefficient of Variation-Threshold'
@@ -569,7 +575,7 @@ def _print_estimates_eval(md: MarkdownWriter,
 
     base_name = '{}_estimates'.format(corpus_name)
 
-    logging.info('Printing estimates report...')
+    logger.info('Printing estimates report {}...'.format(corpus_name))
 
     md.h1('Estimates for \'{}\''.format(corpus_name))
     md.h2('Estimators')
@@ -586,7 +592,7 @@ def _print_estimates_eval(md: MarkdownWriter,
                                         tempo_estimates,
                                         output_dir=output_dir)
 
-    logging.debug('Printing eval...')
+    logger.debug('Printing eval...')
 
     # only eval, when there's something to compare, i.e. we have both estimates and references
     if tempo_estimates and tempo_references:
@@ -666,7 +672,7 @@ def _print_error_metric_evaluation(md: MarkdownWriter,
     :param size: size
     """
 
-    logging.debug('Printing {}/{}...'.format(metric1.name, metric2.name))
+    logger.debug('Printing {}/{} to {} ...'.format(metric1.name, metric2.name, base_name))
 
     md.h2('{} and {}'.format(metric1.formatted_name, metric2.formatted_name))
     md.paragraph(metric1.description)
@@ -853,7 +859,7 @@ def _print_mirex_evaluation(md: MarkdownWriter,
     :param size: size
     """
 
-    logging.debug('Printing MIREX...')
+    logger.debug('Printing MIREX to {} ...'.format(base_name))
 
     def _any_reference_tempi_suitable(reference_tempi):
         mirex_style = False
@@ -1171,7 +1177,7 @@ def _print_metric_over_c_var(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing accuracy over c-var...')
+    logger.debug('Printing accuracy over c-var to {} ...'.format(base_name))
 
     md.h3('{} on c<sub>var</sub>-Subsets'.format(metric.formatted_name))
     md.paragraph('How well does an estimator perform, when only '
@@ -1248,7 +1254,7 @@ def _print_metric_per_tempo(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing estimated {} on tempo...'.format(metric.name))
+    logger.debug('Printing estimated {} on tempo to {} ...'.format(metric.name, base_name))
     md.h3('Estimated {} for Tempo'.format(metric.formatted_name))
     md.paragraph('When fitting a generalized additive model (GAM) to {metric}-values '
                  'and a ground truth, what {metric} can we expect with confidence?'
@@ -1333,7 +1339,7 @@ def _print_metric_over_tempo_interval(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing accuracy over interval...')
+    logger.debug('Printing {} over interval to {} ...'.format(metric.name, base_name))
     md.h3('{} on Tempo-Subsets'.format(metric.formatted_name))
 
     md.paragraph('How well does an estimator perform, when only '
@@ -1412,11 +1418,11 @@ def _print_metric_per_tag(md: MarkdownWriter,
     :param output_dir: output directory
     """
 
-    logging.debug('Printing metric over tag...')
+    logger.debug('Printing {} over tag to {} ...'.format(metric.name, base_name))
     legend = list(list(eval_results.values())[0].keys())
 
     for namespace, refs in tag_references.items():
-        logging.debug('Using namespace \'{}\'.'.format(namespace))
+        logger.debug('Using namespace \'{}\'.'.format(namespace))
 
         md.h3('{} for \'{}\' Tags'
               .format(metric.formatted_name, namespace))
@@ -1557,11 +1563,11 @@ def _print_percentage_for_tag(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing percentage for tag...')
+    logger.debug('Printing percentage for tag to {} ...'.format(base_name))
 
     for namespace in sorted(tag_references.keys()):
 
-        logging.debug('Using namespace \'{}\'.'.format(namespace))
+        logger.debug('Using namespace \'{}\'.'.format(namespace))
         md.h2('Tag Distribution for \'{}\''.format(namespace))
 
         namespace_tag_references = tag_references[namespace]
@@ -1611,7 +1617,7 @@ def _print_percentage_over_interval(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing percent over interval...')
+    logger.debug('Printing percent over interval to {} ...'.format(base_name))
 
     tol = 5.0
     step = 1.0
@@ -1643,7 +1649,7 @@ def _print_percentage_over_interval(md: MarkdownWriter,
                       y_axis_label='Values (%)',
                       output_dir=output_dir)
 
-    logging.debug('Printing percent over interval... Done.')
+    logger.debug('Printing percent over interval... Done.')
 
 
 def _alphanumeric_split(tempo_annotations: Annotations) -> Tuple[Annotations, Annotations]:
@@ -1684,18 +1690,18 @@ def _highest_mma_split(tempo_estimates: Annotations) -> Tuple[Annotations, Annot
             if slash0 != -1:
                 slash1 = est1.find('/')
                 if slash0 == slash1 and est0[:slash0] == est1[:slash0]:
-                    logging.debug('MMA: Detected similar algorithm based on name similarity. '
-                                  'Ignoring agreement of \'{est0}\' with \'{est1}\'.'
-                                  .format(est0=est0, est1=est1))
+                    logger.debug('MMA: Detected similar algorithm based on name similarity. '
+                                 'Ignoring agreement of \'{est0}\' with \'{est1}\'.'
+                                 .format(est0=est0, est1=est1))
                     continue
             c += 1
             s += acc[est0][est1][0][0]
         avg_acc[est0] = s / c
     mma_sorted = sorted(avg_acc.items(), key=operator.itemgetter(1), reverse=True)
-    logging.debug('MMA: {}'.format(mma_sorted))
+    logger.debug('MMA: {}'.format(mma_sorted))
     reference_name = mma_sorted[0][0]
-    logging.info('MMA: Highest mean mutual agreement (MMA): {} ({})'
-                 .format(reference_name, mma_sorted[0][1]))
+    logger.info('MMA: Highest mean mutual agreement (MMA): {} ({})'
+                .format(reference_name, mma_sorted[0][1]))
 
     tempo_references = {k: v for k, v in tempo_estimates.items() if k == reference_name}
     tempo_estimates = {k: v for k, v in tempo_estimates.items() if k != reference_name}
@@ -1728,7 +1734,7 @@ def _print_differing_items(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing differing items...')
+    logger.debug('Printing differing items ({}) to {} ...'.format(metric.name, base_name))
 
     tolerance_04_index = tolerances.index(tolerance)
     md.h4('Differing Items {}'.format(metric.formatted_name))
@@ -1903,7 +1909,7 @@ def _print_significance_matrix(md: MarkdownWriter,
     :param data_formats: data formats to write
     """
 
-    logging.debug('Printing significance difference matrix...')
+    logger.debug('Printing significance difference matrix ({}) to {} ...'.format(metric.name, base_name))
     tolerance_04_index = tolerances.index(tolerance)
     bib_file_name, cite_key = _extract_bibtex_entry(output_dir, 'Gouyon2006')
     p_values = significant_difference(metric, results)
@@ -1989,7 +1995,7 @@ def _print_accuracy_table(md: MarkdownWriter,
     :param data_formats: desired dataformats
     """
 
-    logging.debug('Printing accuracy table...')
+    logger.debug('Printing accuracy table to {} ...'.format(name))
     md.h3('Accuracy Results for {}'.format(ref_name))
     tolerance_04_index = tolerances.index(tolerance)
 
@@ -2068,7 +2074,7 @@ def _print_mirex_table(md: MarkdownWriter,
     :param data_formats: desired data formats
     """
 
-    logging.debug('Printing tolerance table...')
+    logger.debug('Printing tolerance table to {} ...'.format(name))
     md.h3('MIREX Results for {}'.format(ref_name))
     tolerance_index = tolerances.index(tolerance)
 
@@ -2149,7 +2155,7 @@ def _print_mean_stdev_table(md: MarkdownWriter,
     :param output_dir: output dir
     :param data_formats: desired dataformats
     """
-    logging.debug('Printing M{} table...'.format(metric1.name))
+    logger.debug('Printing M{} table to {} ...'.format(metric1.name, name))
     md.h3('Mean {}/{} Results for {}'.format(metric1.formatted_name, metric2.formatted_name, ref_name))
 
     scale_factor = 1.
@@ -2297,7 +2303,7 @@ def _print_annotation_metadata(md: MarkdownWriter,
     :param output_dir: output dir
     """
 
-    logging.debug('Printing annotation metadata...')
+    logger.debug('Printing annotation metadata...')
 
     def md_table_escape(s):
         return s.replace('|', '\\|')\
@@ -2352,8 +2358,8 @@ def _print_annotation_metadata(md: MarkdownWriter,
                                        .format(md_table_escape(first_cite_key),
                                                dir_filename(bib_file_name)))
                         except Exception as e:
-                            logging.error('Failed to parse annotator bibtex field: {}\nbibtex: {}'
-                                          .format(str(e), bibtex_entry))
+                            logger.error('Failed to parse annotator bibtex field: {}\nbibtex: {}'
+                                         .format(str(e), bibtex_entry))
                             # fallback if parsing goes wrong
                             escaped_annotator = md_table_escape(first_annotation.annotation_metadata.annotator[k])
                             md.writeln('{} |'.format(escaped_annotator))
@@ -2439,7 +2445,7 @@ def _print_basic_statistics(md: MarkdownWriter,
     :param data_formats: desired dataformats
     """
 
-    logging.debug('Printing basic statistics...')
+    logger.debug('Printing basic statistics to {} ...'.format(name))
 
     md.h2('Basic Statistics')
 
@@ -2639,6 +2645,7 @@ def _print_gam_plot(md: MarkdownWriter,
     :param image_formats: desired image formats
     :param data_formats: desired data formats
     """
+    logger.debug('Printing GAM plot \'{}\' ...'.format(name))
 
     images = {}
     try:
@@ -2665,7 +2672,7 @@ def _print_gam_plot(md: MarkdownWriter,
         X = np.expand_dims(X, axis=1)
         y = Xy[:,1]
 
-        gam = LinearGAM().gridsearch(X, y)
+        gam = LinearGAM().gridsearch(X, y, progress=False)
         if x_grid is None:
             x_grid = gam.generate_X_grid(term=0, n=100)
             gam_values_df = pd.DataFrame(index=x_grid.reshape(x_grid.shape[0]))
@@ -2762,11 +2769,11 @@ def export_data(name: str,
     if not values_df.index.is_unique:
         values_df = values_df.reset_index()
 
+    logger.debug('Exporting tabular data for \'{}\' using formats: {}.'
+                 .format(name, ', '.join(formats)))
+
     for data_format in formats:
         file_name = create_file(output_dir, name, format=data_format)
-
-        logging.debug('Exporting tabular data to file {} using format \'{}\'.'
-                      .format(file_name, data_format))
 
         # lookup export function by name
         f = getattr(pd.DataFrame, 'to_' + data_format)
@@ -2791,7 +2798,7 @@ def convert_md_to_html(md_file_name: str,
     :param md_file_name: markdown file name
     :return: html file name
     """
-    logging.debug('Converting file {} from markdown to HTML.'.format(md_file_name))
+    logger.debug('Converting file {} from markdown to HTML.'.format(md_file_name))
     if template is None:
         template = HTML_TEMPLATE
 
@@ -2805,10 +2812,10 @@ def convert_md_to_html(md_file_name: str,
             w.write(document)
 
     if delete:
-        logging.debug('Deleting {}.'.format(md_file_name))
+        logger.debug('Deleting {}.'.format(md_file_name))
         remove(md_file_name)
 
-    logging.debug('Created HTML file {}.'.format(html_file_name))
+    logger.debug('Created HTML file {}.'.format(html_file_name))
 
     return html_file_name
 

@@ -22,6 +22,8 @@ from scipy.stats import ttest_rel
 import tempo_eval
 from tempo_eval.parser.util import timestamps_to_bpm
 
+logger = logging.getLogger('tempo_eval')
+
 # type aliases used in functions (type hints)
 # to make autodoc with sphinx a little easier
 MirexTempo = Tuple[float, float, float]
@@ -216,12 +218,30 @@ class Metric:
                         estimated_tempo = specific_estimated_tempi[item_id]
                     else:
                         estimated_tempo = None
-                        logging.warning('Failed to find item \'{}\' in estimate \'{}\'.'
-                                        .format(item_id, estimator))
+                        logger.warning('Failed to find item \'{}\' in estimate \'{}\'.'
+                                       .format(item_id, estimator))
 
                     comparison_results = [eval_function(reference_tempo,
                                                         estimated_tempo)
                                           for eval_function in eval_functions]
+                    if estimated_tempo is not None and np.isnan(np.sum(comparison_results)):
+                        with objmode():
+                            if estimated_tempo == 0.0:
+                                logger.warning('Estimate by \'{}\' for \'{}\' is 0.0. '
+                                               'Reference tempo in \'{}\' '
+                                               'is {}. '
+                                               'To signal no value, please remove the '
+                                               'estimate rather than setting it to 0.0.'
+                                               .format(estimator, item_id,
+                                                       groundtruth_version,
+                                                       reference_tempo))
+                            else:
+                                logger.warning('Metric {} returned nan: '
+                                               'item={}, estimator={}, estimate={}, '
+                                               'reference_version={}, reference={}'
+                                               .format(self.name,
+                                                       item_id, estimator, estimated_tempo,
+                                                       groundtruth_version, reference_tempo))
                     result[groundtruth_version][estimator][item_id] = comparison_results
         return result
 
@@ -485,8 +505,6 @@ def pe1(reference_tempo: PlainTempo,
     if estimated_tempo is None:
         return np.nan
     if reference_tempo == 0.:
-        with objmode():
-            logging.error('PE: Reference tempo must not be 0.')
         return np.nan
     else:
         return (estimated_tempo*factor-reference_tempo)/reference_tempo
@@ -604,12 +622,8 @@ def oe1(reference_tempo: PlainTempo,
     if estimated_tempo is None:
         return np.nan
     elif reference_tempo == 0.:
-        with objmode():
-            logging.error('OE: Reference tempo must not be 0.')
         return np.nan
     elif estimated_tempo == 0.:
-        with objmode():
-            logging.error('OE: Estimated tempo must not be 0.')
         return np.nan
     else:
         return np.log2((estimated_tempo * factor) / reference_tempo)
@@ -875,7 +889,7 @@ def read_annotations(path: str,
         if ``split_by_corpus`` the outermost dict uses corpus names as keys
     :raises FileNotFoundError: if ``path`` does not exist or is not a directory
     """
-    logging.debug('Reading annotations from \'{}\' ...'.format(path))
+    logger.debug('Reading annotations from \'{}\' ...'.format(path))
 
     if not exists(path):
         raise FileNotFoundError('Annotations path does not exist: {}'.format(path))
@@ -911,13 +925,14 @@ def read_annotations(path: str,
                         if version not in base[ns]:
                             base[ns][version] = {}
                         if item_id in base[ns][version]:
-                            logging.warning('Found multiple \'{}\'-annotations with the same version ({}) for '
-                                            'item \'{}\'. Ignoring all but the first one.'
-                                            .format(ns, version, item_id))
+                            logger.warning('Found multiple \'{}\'-annotations with the same version ({}) for '
+                                           'item \'{}\'. Ignoring all but the first one.'
+                                           .format(ns, version, item_id))
                         else:
                             base[ns][version][item_id] = annotation
             except Exception as e:
-                logging.error('Error while parsing jam file {}: {}'.format(jam_file_name, e))
+                logger.error('Error while parsing JAMS file {}: {}'
+                             .format(jam_file_name, e))
                 raise e
 
     return annotations
@@ -1149,8 +1164,9 @@ def mcnemar(estimator1_results: Dict[str, List[EvalResult]],
     for relative_jam_file_name in estimator1_results.keys():
         alg1_correct = estimator1_results[relative_jam_file_name]
         if relative_jam_file_name not in estimator2_results:
-            logging.warning('Item only occurs in set \'{}\', but not in \'{}\': {}'
-                            .format(estimator1_name, estimator2_name, relative_jam_file_name))
+            logger.warning('Item only occurs in set \'{}\', but not in \'{}\': {}'
+                           .format(estimator1_name, estimator2_name,
+                                   relative_jam_file_name))
             continue
         alg2_correct = estimator2_results[relative_jam_file_name]
         for i in range(len(alg1_correct)):
@@ -1186,8 +1202,9 @@ def ttest(estimator1_results: Dict[str, List[EvalResult]],
     b = []
     for relative_jam_file_name in estimator1_results.keys():
         if relative_jam_file_name not in estimator2_results:
-            logging.warning('Item only occurs in set \'{}\', but not in \'{}\': {}'
-                            .format(estimator1_name, estimator2_name, relative_jam_file_name))
+            logger.warning('Item only occurs in set \'{}\', but not in \'{}\': {}'
+                           .format(estimator1_name, estimator2_name,
+                                   relative_jam_file_name))
             continue
         a.append(estimator1_results[relative_jam_file_name])
         b.append(estimator2_results[relative_jam_file_name])
@@ -1224,8 +1241,8 @@ def _get_version(annotation: jams.Annotation, include_corpus: bool = False) -> s
     v = annotation.annotation_metadata.version
 
     if not v:
-        logging.warning('For a reference dataset, a version should be present to uniquely identify it. {}'
-                        .format(annotation.annotation_metadata))
+        logger.warning('For a reference dataset, a version should be present to uniquely identify it. {}'
+                       .format(annotation.annotation_metadata))
         # artificial corpus name, based on the hash value of the json dump
         v = 'unknown_version({})'.format(hash(annotation.annotation_metadata.dumps()))
 
@@ -1374,7 +1391,9 @@ def extract_c_var_from_beats(annotation_set: Dict[str, Dict[str, jams.Annotation
                 _, _, _, c_var = extract_tempo_from_beats(annotation)
                 c_vars[item_id] = c_var
             except Exception as e:
-                logging.error('Failed to extract normalized tempo std from annotation {}: {}'.format(annotation, e))
+                logger.error('Failed to extract normalized '
+                             'tempo std from annotation {}: {}'
+                             .format(annotation, e))
         result[version] = c_vars
     return result
 
@@ -1416,7 +1435,8 @@ def items_lt_c_var(beat_annotations: Annotations,
                 _, _, _, c_var = extract_tempo_from_beats(annotation)
                 c_vars.append((item_id, c_var))
             except:
-                logging.error('Failed to extract normalized tempo std from annotation {}'.format(annotation))
+                logger.error('Failed to extract normalized tempo '
+                             'std from annotation {}'.format(annotation))
         result[version] = [set([v[0]
                                 for v in c_vars
                                 if v[1] < threshold])

@@ -97,10 +97,11 @@ License: ISC License
         level = logging.WARNING
         log_format = '%(levelname)-8s %(message)s'
 
-    logging.getLogger().setLevel(level)
     logging.basicConfig(format=log_format)
-    logging.debug('Log level: {}'.format(level))
-    logging.debug('Report size: {}'.format(args.size))
+    logger = logging.getLogger('tempo_eval')
+    logger.setLevel(level)
+    logger.debug('Log level: {}'.format(level))
+    logger.debug('Report size: {}'.format(args.size))
 
     print_report(output_dir=args.dir,
                  validate=args.validate,
