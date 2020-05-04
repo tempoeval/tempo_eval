@@ -216,7 +216,7 @@ class Metric:
 
                     if item_id in specific_estimated_tempi:
                         estimated_tempo = specific_estimated_tempi[item_id]
-                        if estimated_tempo <= 0.0:
+                        if isinstance(estimated_tempo, float) and estimated_tempo <= 0.0:
                             logger.warning('Estimate {} BPM by \'{}\' for \'{}\' is <= 0.0 BPM. '
                                            'Reference tempo in \'{}\' '
                                            'is {} BPM. '
@@ -226,6 +226,7 @@ class Metric:
                                                    groundtruth_version,
                                                    reference_tempo))
                             estimated_tempo = None
+                        # TODO: What, if it's a tuple for PScore, not a float?
                     else:
                         logger.warning('Failed to find item \'{}\' in estimates by \'{}\'.'
                                        .format(item_id, estimator))
