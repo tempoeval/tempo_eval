@@ -434,7 +434,7 @@ def print_corpus_report(corpus_name: str,
                                   size=size)
         else:
             md.blockquote('No estimate JAMS found.')
-            logger.warning('No estimate JAMS found for corpus {}'.format(corpus_name))
+            logger.warning('No estimate JAMS found for corpus \'{}\'.'.format(corpus_name))
         _print_generation_date(md, size=size)
 
     if format == 'html':

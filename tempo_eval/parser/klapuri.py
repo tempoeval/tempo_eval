@@ -80,6 +80,8 @@ def parse_klapuri2006(input_audio_dir):
 
     # normalize genre names
     df.genre = df.genre.transform(lambda x: x.lower())
+    # the HTML contains duplicates
+    df.drop_duplicates(inplace=True)
     df.reset_index(inplace=True, drop=True)
 
     # join annotations with mapping
@@ -92,7 +94,7 @@ def parse_klapuri2006(input_audio_dir):
         jams_file = join(output_dir, row.file + '.jams')
         audio_file = row.file + '.wav'
         if exists(jams_file):
-            logging.warning('Adding to an existing jams file: {}, {}'.format(jams_file), row)
+            logging.warning('Adding to an existing jams file: {}, {}'.format(jams_file, row))
             jam = jams.load(jams_file)
         else:
             jam = create_jam(audio_file, input_audio_dir, artist=row.artist, title=row.title)
