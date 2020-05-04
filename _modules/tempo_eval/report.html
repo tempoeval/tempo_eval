@@ -263,6 +263,8 @@
 <span class="s2">&lt;/html&gt;</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;tempo_eval&#39;</span><span class="p">)</span>
+
 
 <span class="k">class</span> <span class="nc">Size</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -325,7 +327,8 @@
     <span class="n">corpora</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">corpus_names</span><span class="p">:</span>
         <span class="n">corpora</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">corpus_names</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Explicitly specified corpora: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_names</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Explicitly specified corpora: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_names</span><span class="p">))</span>
 
     <span class="n">additional_estimates</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">estimates_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -337,7 +340,8 @@
                                                 <span class="n">split_by_corpus</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">found_corpora</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">additional_estimates</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="n">corpora</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">found_corpora</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Found corpora in specified estimates: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">found_corpora</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Found corpora in specified estimates: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">found_corpora</span><span class="p">))</span>
 
     <span class="n">additional_references</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">references_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -349,20 +353,22 @@
                                                  <span class="n">split_by_corpus</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">found_corpora</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">additional_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="n">corpora</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">found_corpora</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Found corpora in specified references: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">found_corpora</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Found corpora in specified references: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">found_corpora</span><span class="p">))</span>
 
     <span class="c1"># fall back to built-in corpus references</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">corpora</span><span class="p">:</span>
         <span class="n">corpora</span> <span class="o">=</span> <span class="n">list_reference_corpus_names</span><span class="p">()</span>
         <span class="n">corpora</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">list_estimate_corpus_names</span><span class="p">())</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Found corpora in built-in annotations: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpora</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Found corpora in built-in annotations: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpora</span><span class="p">))</span>
 
     <span class="n">corpora</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">corpora</span><span class="p">)))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">corpora</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;No corpora found.&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;No corpora found.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Effective corpora: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpora</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Effective corpora: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpora</span><span class="p">))</span>
 
     <span class="n">corpus_files</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">corpus_name</span> <span class="ow">in</span> <span class="n">corpora</span><span class="p">:</span>
@@ -388,8 +394,9 @@
         <span class="n">jekyll</span> <span class="o">=</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;kramdown&#39;</span>
         <span class="n">kramdown</span> <span class="o">=</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;kramdown&#39;</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">MarkdownWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">jekyll</span><span class="o">=</span><span class="n">jekyll</span><span class="p">,</span> <span class="n">kramdown</span><span class="o">=</span><span class="n">kramdown</span><span class="p">)</span>
-        <span class="n">md</span><span class="o">.</span><span class="n">h1</span><span class="p">(</span><span class="s1">&#39;tempo_eval&#39;</span><span class="p">)</span>
-        <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;Detailed evaluations for the following corpora:&#39;</span><span class="p">)</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">h1</span><span class="p">(</span><span class="s1">&#39;tempo_eval_report&#39;</span><span class="p">)</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;Detailed global tempo estimation evaluations created with [tempo_eval](https://tempoeval.github.io/tempo_eval/).&#39;</span><span class="p">)</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;Evaluated corpora:&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">corpus_name</span><span class="p">,</span> <span class="n">corpus_file</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">corpora</span><span class="p">,</span> <span class="n">corpus_files</span><span class="p">):</span>
             <span class="n">md</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;- &#39;</span><span class="p">)</span>
             <span class="n">md</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">basename</span><span class="p">(</span><span class="n">corpus_file</span><span class="p">))</span>
@@ -404,7 +411,7 @@
     <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">convert_md_to_html</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Done. The main report page can be found at </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Done. The main report page can be found at </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">file_name</span></div>
 
 
@@ -440,8 +447,8 @@
     <span class="k">if</span> <span class="nb">format</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;kramdown&#39;</span><span class="p">,</span> <span class="s1">&#39;markdown&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unsupported output format: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">format</span><span class="p">))</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Creating report for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Loading annotations...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Creating report for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Loading annotations...&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">merge_annotations</span><span class="p">(</span><span class="n">existing_annotations</span><span class="p">,</span> <span class="n">additional_annotations</span><span class="p">):</span>
 
@@ -469,9 +476,9 @@
                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span>
                                     <span class="n">version</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">))</span>\
                             <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
-                    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Annotations with version </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> already &#39;</span>
-                                 <span class="s1">&#39;exists and will be replaced with </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
-                                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">new_version</span><span class="p">))</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Annotations with version </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> already &#39;</span>
+                                <span class="s1">&#39;exists and will be replaced with </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
+                                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">new_version</span><span class="p">))</span>
                     <span class="n">ex</span><span class="p">[</span><span class="n">new_version</span><span class="p">]</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="n">version</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">ex</span><span class="p">[</span><span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="n">version</span><span class="p">]</span>
@@ -480,10 +487,10 @@
     <span class="n">estimates</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">estimates</span> <span class="o">=</span> <span class="n">read_estimate_annotations</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Found built-in estimates: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">estimates</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Found built-in estimates: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">estimates</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">fnfe</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to read built-in estimates for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
-                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">fnfe</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Failed to read built-in estimates for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
+                       <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">fnfe</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">additional_estimates</span><span class="p">:</span>
         <span class="n">estimates</span> <span class="o">=</span> <span class="n">merge_annotations</span><span class="p">(</span><span class="n">estimates</span><span class="p">,</span> <span class="n">additional_estimates</span><span class="p">)</span>
@@ -499,10 +506,10 @@
                                                            <span class="s1">&#39;tag_fma_genre&#39;</span><span class="p">,</span> <span class="s1">&#39;tempo&#39;</span><span class="p">,</span>
                                                            <span class="s1">&#39;beat&#39;</span><span class="p">],</span>
                                                 <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Found built-in references: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">references</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Found built-in references: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">references</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">fnfe</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to read built-in references for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
-                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">fnfe</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Failed to read built-in references for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
+                       <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">fnfe</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">additional_references</span><span class="p">:</span>
         <span class="n">references</span> <span class="o">=</span> <span class="n">merge_annotations</span><span class="p">(</span><span class="n">references</span><span class="p">,</span> <span class="n">additional_references</span><span class="p">)</span>
@@ -516,7 +523,7 @@
     <span class="k">if</span> <span class="s1">&#39;tag_fma_genre&#39;</span> <span class="ow">in</span> <span class="n">references</span><span class="p">:</span>
         <span class="n">tag_references</span><span class="p">[</span><span class="s1">&#39;tag_fma_genre&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">references</span><span class="p">[</span><span class="s1">&#39;tag_fma_genre&#39;</span><span class="p">]</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Annotations loaded.&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Annotations loaded.&#39;</span><span class="p">)</span>
 
     <span class="n">smkdirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
     <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.md&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span>
@@ -537,14 +544,16 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">md</span><span class="o">.</span><span class="n">h1</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">)</span>
 
-        <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;This is the tempo_eval report for the </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> corpus.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;This is the [tempo_eval](https://tempoeval.github.io/tempo_eval/) report for the </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> corpus.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">html</span><span class="p">:</span>
+            <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;Reports for other corpora may be found [here](index.md).&#39;</span><span class="p">)</span>
             <span class="c1"># the following line will be replaced by kramdown</span>
             <span class="c1"># see https://kramdown.gettalong.org/converter/html.html#toc</span>
             <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;Table of Contents&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">{:.no_toc}&#39;</span><span class="p">)</span>
             <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;- TOC</span><span class="se">\n</span><span class="s1">{:toc}&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;Reports for other corpora may be found [here](index.html).&#39;</span><span class="p">)</span>
             <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;Table of Contents&#39;</span><span class="p">)</span>
             <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;[TOC]&#39;</span><span class="p">)</span>  <span class="c1"># will be replace by toc markdown extension</span>
 
@@ -553,10 +562,11 @@
                 <span class="c1"># we have two estimates, but no reference.</span>
                 <span class="c1"># pick one as reference (sort alphanumerically, pick first)</span>
                 <span class="n">tempo_references</span><span class="p">,</span> <span class="n">tempo_estimates</span> <span class="o">=</span> <span class="n">_alphanumeric_split</span><span class="p">(</span><span class="n">tempo_estimates</span><span class="p">)</span>
-                <span class="n">md</span><span class="o">.</span><span class="n">blockquote</span><span class="p">(</span><span class="s1">&#39;Because reference annotations are &#39;</span>
-                              <span class="s1">&#39;not available, we treat the *estimate* </span><span class="si">{}</span><span class="s1"> &#39;</span>
-                              <span class="s1">&#39;as reference.&#39;</span>
-                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">to_headline_link</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tempo_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">])))</span>
+                <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;Because reference annotations are &#39;</span>
+                             <span class="s1">&#39;not available, we treat the *estimate* </span><span class="si">{}</span><span class="s1"> &#39;</span>
+                             <span class="s1">&#39;as reference.&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">to_headline_link</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tempo_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">])),</span>
+                             <span class="n">strong</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># we have 2 or more estimates, pick the one</span>
                 <span class="c1"># with the highest average agreement as reference</span>
@@ -575,14 +585,14 @@
                                   <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">md</span><span class="o">.</span><span class="n">blockquote</span><span class="p">(</span><span class="s1">&#39;No reference Jams found.&#39;</span><span class="p">)</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No reference Jams found for corpus </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No reference Jams found for corpus </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">tempo_estimates</span><span class="p">:</span>
             <span class="n">_print_estimates_eval</span><span class="p">(</span><span class="n">md</span><span class="p">,</span> <span class="n">corpus_name</span><span class="p">,</span> <span class="n">tempo_references</span><span class="p">,</span> <span class="n">tempo_estimates</span><span class="p">,</span>
                                   <span class="n">beat_references</span><span class="p">,</span> <span class="n">tag_references</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
                                   <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">md</span><span class="o">.</span><span class="n">blockquote</span><span class="p">(</span><span class="s1">&#39;No estimate Jams found.&#39;</span><span class="p">)</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No estimate Jams found for corpus </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
+            <span class="n">md</span><span class="o">.</span><span class="n">blockquote</span><span class="p">(</span><span class="s1">&#39;No estimate JAMS found.&#39;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No estimate JAMS found for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
         <span class="n">_print_generation_date</span><span class="p">(</span><span class="n">md</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
@@ -610,7 +620,7 @@
 <span class="sd">    :param size: size</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Printing reference report...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Printing reference report </span><span class="si">{}</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
 
     <span class="n">md</span><span class="o">.</span><span class="n">h1</span><span class="p">(</span><span class="s1">&#39;References for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;References&#39;</span><span class="p">)</span>
@@ -687,17 +697,15 @@
                 <span class="n">y_values</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span> <span class="n">fractions_lt_c_var</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
                                  <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">fractions_lt_c_var</span><span class="o">.</span><span class="n">keys</span><span class="p">()})</span>
         <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">fnfe</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to read built-in beat estimates for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
-                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">fnfe</span><span class="p">))</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Failed to read built-in beat estimates for corpus </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
+                           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">,</span> <span class="n">fnfe</span><span class="p">))</span>
 
     <span class="n">values_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">cv_tresholds</span><span class="p">)</span>
     <span class="n">values_df</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Fraction of Dataset Below Coefficient of Variation-Threshold&#39;</span>
     <span class="n">values_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;τ&#39;</span>
 
     <span class="n">_print_line_graph</span><span class="p">(</span><span class="n">md</span><span class="p">,</span> <span class="s1">&#39;all_variation&#39;</span><span class="p">,</span> <span class="n">values_df</span><span class="p">,</span>
-                      <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;Fraction of the dataset with beat-annotated &#39;</span>
-                              <span class="s1">&#39;tracks, where beats/track fall below a given &#39;</span>
-                              <span class="s1">&#39;coefficient of variation τ.&#39;</span><span class="p">,</span>
+                      <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;Fraction of the dataset with beat-annotated tracks with c&lt;sub&gt;var&lt;/sub&gt; &lt; τ.&#39;</span><span class="p">,</span>
                       <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Fraction of Dataset (%)&#39;</span><span class="p">,</span>
                       <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">)</span>
 
@@ -725,7 +733,7 @@
 
     <span class="n">base_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_estimates&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Printing estimates report...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Printing estimates report </span><span class="si">{}</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
 
     <span class="n">md</span><span class="o">.</span><span class="n">h1</span><span class="p">(</span><span class="s1">&#39;Estimates for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corpus_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;Estimators&#39;</span><span class="p">)</span>
@@ -742,7 +750,7 @@
                                         <span class="n">tempo_estimates</span><span class="p">,</span>
                                         <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing eval...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing eval...&#39;</span><span class="p">)</span>
 
     <span class="c1"># only eval, when there&#39;s something to compare, i.e. we have both estimates and references</span>
     <span class="k">if</span> <span class="n">tempo_estimates</span> <span class="ow">and</span> <span class="n">tempo_references</span><span class="p">:</span>
@@ -822,7 +830,7 @@
 <span class="sd">    :param size: size</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">metric2</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1"> to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">metric2</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">base_name</span><span class="p">))</span>
 
     <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> and </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">,</span> <span class="n">metric2</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
@@ -1009,7 +1017,7 @@
 <span class="sd">    :param size: size</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing MIREX...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing MIREX to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_name</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_any_reference_tempi_suitable</span><span class="p">(</span><span class="n">reference_tempi</span><span class="p">):</span>
         <span class="n">mirex_style</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1327,7 +1335,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing accuracy over c-var...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing accuracy over c-var to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_name</span><span class="p">))</span>
 
     <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> on c&lt;sub&gt;var&lt;/sub&gt;-Subsets&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;How well does an estimator perform, when only &#39;</span>
@@ -1404,7 +1412,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing estimated </span><span class="si">{}</span><span class="s1"> on tempo...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing estimated </span><span class="si">{}</span><span class="s1"> on tempo to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">base_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;Estimated </span><span class="si">{}</span><span class="s1"> for Tempo&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;When fitting a generalized additive model (GAM) to </span><span class="si">{metric}</span><span class="s1">-values &#39;</span>
                  <span class="s1">&#39;and a ground truth, what </span><span class="si">{metric}</span><span class="s1"> can we expect with confidence?&#39;</span>
@@ -1489,7 +1497,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing accuracy over interval...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing </span><span class="si">{}</span><span class="s1"> over interval to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">base_name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> on Tempo-Subsets&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">))</span>
 
     <span class="n">md</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="s1">&#39;How well does an estimator perform, when only &#39;</span>
@@ -1568,11 +1576,11 @@
 <span class="sd">    :param output_dir: output directory</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing metric over tag...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing </span><span class="si">{}</span><span class="s1"> over tag to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">base_name</span><span class="p">))</span>
     <span class="n">legend</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">eval_results</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
     <span class="k">for</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">refs</span> <span class="ow">in</span> <span class="n">tag_references</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Using namespace </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Using namespace </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span>
 
         <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> Tags&#39;</span>
               <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">,</span> <span class="n">namespace</span><span class="p">))</span>
@@ -1713,11 +1721,11 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing percentage for tag...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing percentage for tag to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_name</span><span class="p">))</span>
 
     <span class="k">for</span> <span class="n">namespace</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tag_references</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
 
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Using namespace </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Using namespace </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span>
         <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;Tag Distribution for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span>
 
         <span class="n">namespace_tag_references</span> <span class="o">=</span> <span class="n">tag_references</span><span class="p">[</span><span class="n">namespace</span><span class="p">]</span>
@@ -1767,7 +1775,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing percent over interval...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing percent over interval to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_name</span><span class="p">))</span>
 
     <span class="n">tol</span> <span class="o">=</span> <span class="mf">5.0</span>
     <span class="n">step</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -1799,7 +1807,7 @@
                       <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Values (%)&#39;</span><span class="p">,</span>
                       <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing percent over interval... Done.&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing percent over interval... Done.&#39;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_alphanumeric_split</span><span class="p">(</span><span class="n">tempo_annotations</span><span class="p">:</span> <span class="n">Annotations</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Annotations</span><span class="p">,</span> <span class="n">Annotations</span><span class="p">]:</span>
@@ -1840,18 +1848,18 @@
             <span class="k">if</span> <span class="n">slash0</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="n">slash1</span> <span class="o">=</span> <span class="n">est1</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">slash0</span> <span class="o">==</span> <span class="n">slash1</span> <span class="ow">and</span> <span class="n">est0</span><span class="p">[:</span><span class="n">slash0</span><span class="p">]</span> <span class="o">==</span> <span class="n">est1</span><span class="p">[:</span><span class="n">slash0</span><span class="p">]:</span>
-                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;MMA: Detected similar algorithm based on name similarity. &#39;</span>
-                                  <span class="s1">&#39;Ignoring agreement of </span><span class="se">\&#39;</span><span class="si">{est0}</span><span class="se">\&#39;</span><span class="s1"> with </span><span class="se">\&#39;</span><span class="si">{est1}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
-                                  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">est0</span><span class="o">=</span><span class="n">est0</span><span class="p">,</span> <span class="n">est1</span><span class="o">=</span><span class="n">est1</span><span class="p">))</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;MMA: Detected similar algorithm based on name similarity. &#39;</span>
+                                 <span class="s1">&#39;Ignoring agreement of </span><span class="se">\&#39;</span><span class="si">{est0}</span><span class="se">\&#39;</span><span class="s1"> with </span><span class="se">\&#39;</span><span class="si">{est1}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
+                                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">est0</span><span class="o">=</span><span class="n">est0</span><span class="p">,</span> <span class="n">est1</span><span class="o">=</span><span class="n">est1</span><span class="p">))</span>
                     <span class="k">continue</span>
             <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">s</span> <span class="o">+=</span> <span class="n">acc</span><span class="p">[</span><span class="n">est0</span><span class="p">][</span><span class="n">est1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">avg_acc</span><span class="p">[</span><span class="n">est0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="o">/</span> <span class="n">c</span>
     <span class="n">mma_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">avg_acc</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;MMA: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mma_sorted</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;MMA: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mma_sorted</span><span class="p">))</span>
     <span class="n">reference_name</span> <span class="o">=</span> <span class="n">mma_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;MMA: Highest mean mutual agreement (MMA): </span><span class="si">{}</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
-                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reference_name</span><span class="p">,</span> <span class="n">mma_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;MMA: Highest mean mutual agreement (MMA): </span><span class="si">{}</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reference_name</span><span class="p">,</span> <span class="n">mma_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
 
     <span class="n">tempo_references</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tempo_estimates</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">reference_name</span><span class="p">}</span>
     <span class="n">tempo_estimates</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tempo_estimates</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="n">reference_name</span><span class="p">}</span>
@@ -1884,7 +1892,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing differing items...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing differing items (</span><span class="si">{}</span><span class="s1">) to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">base_name</span><span class="p">))</span>
 
     <span class="n">tolerance_04_index</span> <span class="o">=</span> <span class="n">tolerances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">tolerance</span><span class="p">)</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h4</span><span class="p">(</span><span class="s1">&#39;Differing Items </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">))</span>
@@ -2059,7 +2067,7 @@
 <span class="sd">    :param data_formats: data formats to write</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing significance difference matrix...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing significance difference matrix (</span><span class="si">{}</span><span class="s1">) to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">base_name</span><span class="p">))</span>
     <span class="n">tolerance_04_index</span> <span class="o">=</span> <span class="n">tolerances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">tolerance</span><span class="p">)</span>
     <span class="n">bib_file_name</span><span class="p">,</span> <span class="n">cite_key</span> <span class="o">=</span> <span class="n">_extract_bibtex_entry</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;Gouyon2006&#39;</span><span class="p">)</span>
     <span class="n">p_values</span> <span class="o">=</span> <span class="n">significant_difference</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
@@ -2145,7 +2153,7 @@
 <span class="sd">    :param data_formats: desired dataformats</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing accuracy table...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing accuracy table to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;Accuracy Results for </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ref_name</span><span class="p">))</span>
     <span class="n">tolerance_04_index</span> <span class="o">=</span> <span class="n">tolerances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">tolerance</span><span class="p">)</span>
 
@@ -2224,7 +2232,7 @@
 <span class="sd">    :param data_formats: desired data formats</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing tolerance table...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing tolerance table to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;MIREX Results for </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ref_name</span><span class="p">))</span>
     <span class="n">tolerance_index</span> <span class="o">=</span> <span class="n">tolerances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">tolerance</span><span class="p">)</span>
 
@@ -2305,7 +2313,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    :param data_formats: desired dataformats</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing M</span><span class="si">{}</span><span class="s1"> table...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing M</span><span class="si">{}</span><span class="s1"> table to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
     <span class="n">md</span><span class="o">.</span><span class="n">h3</span><span class="p">(</span><span class="s1">&#39;Mean </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1"> Results for </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric1</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">,</span> <span class="n">metric2</span><span class="o">.</span><span class="n">formatted_name</span><span class="p">,</span> <span class="n">ref_name</span><span class="p">))</span>
 
     <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span>
@@ -2453,7 +2461,7 @@
 <span class="sd">    :param output_dir: output dir</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing annotation metadata...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing annotation metadata...&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">md_table_escape</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">|&#39;</span><span class="p">)</span>\
@@ -2508,8 +2516,8 @@
                                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md_table_escape</span><span class="p">(</span><span class="n">first_cite_key</span><span class="p">),</span>
                                                <span class="n">dir_filename</span><span class="p">(</span><span class="n">bib_file_name</span><span class="p">)))</span>
                         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to parse annotator bibtex field: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">bibtex: </span><span class="si">{}</span><span class="s1">&#39;</span>
-                                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">bibtex_entry</span><span class="p">))</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to parse annotator bibtex field: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">bibtex: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                                         <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">bibtex_entry</span><span class="p">))</span>
                             <span class="c1"># fallback if parsing goes wrong</span>
                             <span class="n">escaped_annotator</span> <span class="o">=</span> <span class="n">md_table_escape</span><span class="p">(</span><span class="n">first_annotation</span><span class="o">.</span><span class="n">annotation_metadata</span><span class="o">.</span><span class="n">annotator</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
                             <span class="n">md</span><span class="o">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> |&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">escaped_annotator</span><span class="p">))</span>
@@ -2595,7 +2603,7 @@
 <span class="sd">    :param data_formats: desired dataformats</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing basic statistics...&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing basic statistics to </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
 
     <span class="n">md</span><span class="o">.</span><span class="n">h2</span><span class="p">(</span><span class="s1">&#39;Basic Statistics&#39;</span><span class="p">)</span>
 
@@ -2795,6 +2803,7 @@
 <span class="sd">    :param image_formats: desired image formats</span>
 <span class="sd">    :param data_formats: desired data formats</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Printing GAM plot </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
 
     <span class="n">images</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">try</span><span class="p">:</span>
@@ -2821,7 +2830,7 @@
         <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">Xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
 
-        <span class="n">gam</span> <span class="o">=</span> <span class="n">LinearGAM</span><span class="p">()</span><span class="o">.</span><span class="n">gridsearch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">gam</span> <span class="o">=</span> <span class="n">LinearGAM</span><span class="p">()</span><span class="o">.</span><span class="n">gridsearch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">x_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">x_grid</span> <span class="o">=</span> <span class="n">gam</span><span class="o">.</span><span class="n">generate_X_grid</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
             <span class="n">gam_values_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x_grid</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
@@ -2918,11 +2927,11 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">values_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
         <span class="n">values_df</span> <span class="o">=</span> <span class="n">values_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Exporting tabular data for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> using formats: </span><span class="si">{}</span><span class="s1">.&#39;</span>
+                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formats</span><span class="p">)))</span>
+
     <span class="k">for</span> <span class="n">data_format</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">:</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">create_file</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">data_format</span><span class="p">)</span>
-
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Exporting tabular data to file </span><span class="si">{}</span><span class="s1"> using format </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
-                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data_format</span><span class="p">))</span>
 
         <span class="c1"># lookup export function by name</span>
         <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="s1">&#39;to_&#39;</span> <span class="o">+</span> <span class="n">data_format</span><span class="p">)</span>
@@ -2947,7 +2956,7 @@
 <span class="sd">    :param md_file_name: markdown file name</span>
 <span class="sd">    :return: html file name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Converting file </span><span class="si">{}</span><span class="s1"> from markdown to HTML.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md_file_name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Converting file </span><span class="si">{}</span><span class="s1"> from markdown to HTML.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md_file_name</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">template</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">template</span> <span class="o">=</span> <span class="n">HTML_TEMPLATE</span>
 
@@ -2961,10 +2970,10 @@
             <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">delete</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Deleting </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md_file_name</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Deleting </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md_file_name</span><span class="p">))</span>
         <span class="n">remove</span><span class="p">(</span><span class="n">md_file_name</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Created HTML file </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">html_file_name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Created HTML file </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">html_file_name</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">html_file_name</span>
 

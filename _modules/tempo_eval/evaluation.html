@@ -180,6 +180,8 @@
 <span class="kn">import</span> <span class="nn">tempo_eval</span>
 <span class="kn">from</span> <span class="nn">tempo_eval.parser.util</span> <span class="k">import</span> <span class="n">timestamps_to_bpm</span>
 
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;tempo_eval&#39;</span><span class="p">)</span>
+
 <span class="c1"># type aliases used in functions (type hints)</span>
 <span class="c1"># to make autodoc with sphinx a little easier</span>
 <span class="n">MirexTempo</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
@@ -372,14 +374,33 @@
 
                     <span class="k">if</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="n">specific_estimated_tempi</span><span class="p">:</span>
                         <span class="n">estimated_tempo</span> <span class="o">=</span> <span class="n">specific_estimated_tempi</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">estimated_tempo</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="n">estimated_tempo</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Estimate </span><span class="si">{}</span><span class="s1"> BPM by </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> for </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is &lt;= 0.0 BPM. &#39;</span>
+                                           <span class="s1">&#39;Reference tempo in </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> &#39;</span>
+                                           <span class="s1">&#39;is </span><span class="si">{}</span><span class="s1"> BPM. &#39;</span>
+                                           <span class="s1">&#39;We will ignore this estimate and treat it as </span><span class="se">\&#39;</span><span class="s1">no value</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
+                                           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimated_tempo</span><span class="p">,</span>
+                                                   <span class="n">estimator</span><span class="p">,</span> <span class="n">item_id</span><span class="p">,</span>
+                                                   <span class="n">groundtruth_version</span><span class="p">,</span>
+                                                   <span class="n">reference_tempo</span><span class="p">))</span>
+                            <span class="n">estimated_tempo</span> <span class="o">=</span> <span class="kc">None</span>
+                        <span class="c1"># TODO: What, if it&#39;s a tuple for PScore, not a float?</span>
                     <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Failed to find item </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> in estimates by </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
+                                       <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item_id</span><span class="p">,</span> <span class="n">estimator</span><span class="p">))</span>
                         <span class="n">estimated_tempo</span> <span class="o">=</span> <span class="kc">None</span>
-                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Failed to find item </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> in estimate </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>
-                                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item_id</span><span class="p">,</span> <span class="n">estimator</span><span class="p">))</span>
 
                     <span class="n">comparison_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">eval_function</span><span class="p">(</span><span class="n">reference_tempo</span><span class="p">,</span>
                                                         <span class="n">estimated_tempo</span><span class="p">)</span>
                                           <span class="k">for</span> <span class="n">eval_function</span> <span class="ow">in</span> <span class="n">eval_functions</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">estimated_tempo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">comparison_results</span><span class="p">)):</span>
+                        <span class="k">with</span> <span class="n">objmode</span><span class="p">():</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Metric </span><span class="si">{}</span><span class="s1"> returned nan: &#39;</span>
+                                           <span class="s1">&#39;item=</span><span class="si">{}</span><span class="s1">, estimator=</span><span class="si">{}</span><span class="s1">, estimate=</span><span class="si">{}</span><span class="s1"> BPM, &#39;</span>
+                                           <span class="s1">&#39;reference_version=</span><span class="si">{}</span><span class="s1">, reference=</span><span class="si">{}</span><span class="s1"> BPM&#39;</span>
+                                           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                   <span class="n">item_id</span><span class="p">,</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">estimated_tempo</span><span class="p">,</span>
+                                                   <span class="n">groundtruth_version</span><span class="p">,</span> <span class="n">reference_tempo</span><span class="p">))</span>
                     <span class="n">result</span><span class="p">[</span><span class="n">groundtruth_version</span><span class="p">][</span><span class="n">estimator</span><span class="p">][</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">comparison_results</span>
         <span class="k">return</span> <span class="n">result</span>
 
@@ -388,6 +409,9 @@
                  <span class="n">undefined_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AverageResults</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate means and standard deviations for the given evaluation results.</span>
+<span class="sd">        Possible INF and NaN values will be masked, i.e., ignored.</span>
+<span class="sd">        This means that if an algorithms did not produce a valid estimate, averages</span>
+<span class="sd">        and standard deviations will be computed without that value.</span>
 
 <span class="sd">        :param undefined_value: value to use, if no data is available. Defaults to</span>
 <span class="sd">            ``self.best_value``.</span>
@@ -412,7 +436,7 @@
                     <span class="n">averages</span><span class="p">[</span><span class="n">groundtruth_version</span><span class="p">][</span><span class="n">estimator</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">undefined_value</span><span class="p">],</span> <span class="p">[</span><span class="n">undefined_value</span><span class="p">]</span>
                     <span class="k">continue</span>
 
-                <span class="c1"># mask invalid, because APE can be INF.</span>
+                <span class="c1"># mask invalid, because APE can be INF and OE can be NaN</span>
                 <span class="n">masked_invalid_filtered_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">filtered_values</span><span class="p">)</span>
                 <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">masked_invalid_filtered_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
                 <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">masked_invalid_filtered_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
@@ -643,8 +667,6 @@
     <span class="k">if</span> <span class="n">estimated_tempo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">if</span> <span class="n">reference_tempo</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">objmode</span><span class="p">():</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;PE: Reference tempo must not be 0.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">estimated_tempo</span><span class="o">*</span><span class="n">factor</span><span class="o">-</span><span class="n">reference_tempo</span><span class="p">)</span><span class="o">/</span><span class="n">reference_tempo</span></div>
@@ -762,12 +784,8 @@
     <span class="k">if</span> <span class="n">estimated_tempo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">elif</span> <span class="n">reference_tempo</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">objmode</span><span class="p">():</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;OE: Reference tempo must not be 0.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">elif</span> <span class="n">estimated_tempo</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">objmode</span><span class="p">():</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;OE: Estimated tempo must not be 0.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">((</span><span class="n">estimated_tempo</span> <span class="o">*</span> <span class="n">factor</span><span class="p">)</span> <span class="o">/</span> <span class="n">reference_tempo</span><span class="p">)</span></div>
@@ -926,7 +944,9 @@
     <span class="n">rel_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="s1">&#39;annotations&#39;</span><span class="p">,</span> <span class="s1">&#39;references&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rel_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span></div>
+        <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span></div>
 
 
 <div class="viewcode-block" id="get_estimates_path"><a class="viewcode-back" href="../../generated/tempo_eval.get_estimates_path.html#tempo_eval.get_estimates_path">[docs]</a><span class="k">def</span> <span class="nf">get_estimates_path</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -945,7 +965,9 @@
         <span class="n">rel_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rel_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span></div>
+        <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span></div>
 
 
 <div class="viewcode-block" id="list_reference_corpus_names"><a class="viewcode-back" href="../../generated/tempo_eval.list_reference_corpus_names.html#tempo_eval.list_reference_corpus_names">[docs]</a><span class="k">def</span> <span class="nf">list_reference_corpus_names</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -1029,7 +1051,7 @@
 <span class="sd">        if ``split_by_corpus`` the outermost dict uses corpus names as keys</span>
 <span class="sd">    :raises FileNotFoundError: if ``path`` does not exist or is not a directory</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Reading annotations from </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Reading annotations from </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;Annotations path does not exist: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
@@ -1065,13 +1087,14 @@
                         <span class="k">if</span> <span class="n">version</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base</span><span class="p">[</span><span class="n">ns</span><span class="p">]:</span>
                             <span class="n">base</span><span class="p">[</span><span class="n">ns</span><span class="p">][</span><span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
                         <span class="k">if</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="n">base</span><span class="p">[</span><span class="n">ns</span><span class="p">][</span><span class="n">version</span><span class="p">]:</span>
-                            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Found multiple </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">-annotations with the same version (</span><span class="si">{}</span><span class="s1">) for &#39;</span>
-                                            <span class="s1">&#39;item </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">. Ignoring all but the first one.&#39;</span>
-                                            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">item_id</span><span class="p">))</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Found multiple </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">-annotations with the same version (</span><span class="si">{}</span><span class="s1">) for &#39;</span>
+                                           <span class="s1">&#39;item </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">. Ignoring all but the first one.&#39;</span>
+                                           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">item_id</span><span class="p">))</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="n">base</span><span class="p">[</span><span class="n">ns</span><span class="p">][</span><span class="n">version</span><span class="p">][</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">annotation</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error while parsing jam file </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jam_file_name</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error while parsing JAMS file </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jam_file_name</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
                 <span class="k">raise</span> <span class="n">e</span>
 
     <span class="k">return</span> <span class="n">annotations</span></div>
@@ -1303,8 +1326,9 @@
     <span class="k">for</span> <span class="n">relative_jam_file_name</span> <span class="ow">in</span> <span class="n">estimator1_results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="n">alg1_correct</span> <span class="o">=</span> <span class="n">estimator1_results</span><span class="p">[</span><span class="n">relative_jam_file_name</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">relative_jam_file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">estimator2_results</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Item only occurs in set </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">, but not in </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span>
-                            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimator1_name</span><span class="p">,</span> <span class="n">estimator2_name</span><span class="p">,</span> <span class="n">relative_jam_file_name</span><span class="p">))</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Item only occurs in set </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">, but not in </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimator1_name</span><span class="p">,</span> <span class="n">estimator2_name</span><span class="p">,</span>
+                                   <span class="n">relative_jam_file_name</span><span class="p">))</span>
             <span class="k">continue</span>
         <span class="n">alg2_correct</span> <span class="o">=</span> <span class="n">estimator2_results</span><span class="p">[</span><span class="n">relative_jam_file_name</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alg1_correct</span><span class="p">)):</span>
@@ -1340,8 +1364,9 @@
     <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">relative_jam_file_name</span> <span class="ow">in</span> <span class="n">estimator1_results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">relative_jam_file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">estimator2_results</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Item only occurs in set </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">, but not in </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span>
-                            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimator1_name</span><span class="p">,</span> <span class="n">estimator2_name</span><span class="p">,</span> <span class="n">relative_jam_file_name</span><span class="p">))</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Item only occurs in set </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">, but not in </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimator1_name</span><span class="p">,</span> <span class="n">estimator2_name</span><span class="p">,</span>
+                                   <span class="n">relative_jam_file_name</span><span class="p">))</span>
             <span class="k">continue</span>
         <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">estimator1_results</span><span class="p">[</span><span class="n">relative_jam_file_name</span><span class="p">])</span>
         <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">estimator2_results</span><span class="p">[</span><span class="n">relative_jam_file_name</span><span class="p">])</span>
@@ -1378,8 +1403,8 @@
     <span class="n">v</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">annotation_metadata</span><span class="o">.</span><span class="n">version</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;For a reference dataset, a version should be present to uniquely identify it. </span><span class="si">{}</span><span class="s1">&#39;</span>
-                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">annotation_metadata</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;For a reference dataset, a version should be present to uniquely identify it. </span><span class="si">{}</span><span class="s1">&#39;</span>
+                       <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">annotation_metadata</span><span class="p">))</span>
         <span class="c1"># artificial corpus name, based on the hash value of the json dump</span>
         <span class="n">v</span> <span class="o">=</span> <span class="s1">&#39;unknown_version(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">annotation_metadata</span><span class="o">.</span><span class="n">dumps</span><span class="p">()))</span>
 
@@ -1528,7 +1553,9 @@
                 <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">c_var</span> <span class="o">=</span> <span class="n">extract_tempo_from_beats</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
                 <span class="n">c_vars</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">c_var</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to extract normalized tempo std from annotation </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to extract normalized &#39;</span>
+                             <span class="s1">&#39;tempo std from annotation </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
         <span class="n">result</span><span class="p">[</span><span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">c_vars</span>
     <span class="k">return</span> <span class="n">result</span></div>
 
@@ -1570,7 +1597,8 @@
                 <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">c_var</span> <span class="o">=</span> <span class="n">extract_tempo_from_beats</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
                 <span class="n">c_vars</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">item_id</span><span class="p">,</span> <span class="n">c_var</span><span class="p">))</span>
             <span class="k">except</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to extract normalized tempo std from annotation </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">annotation</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to extract normalized tempo &#39;</span>
+                             <span class="s1">&#39;std from annotation </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">annotation</span><span class="p">))</span>
         <span class="n">result</span><span class="p">[</span><span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                                 <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">c_vars</span>
                                 <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">])</span>
