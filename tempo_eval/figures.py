@@ -275,9 +275,18 @@ def _render_line_graph_pygal(file_names: Iterable[str],
     if '%' in values_df.index.name:
         x_convert = lambda d: str(round(d * 100., 4))
 
-    line_chart = pygal.Line(show_only_major_dots=True, range=chart_range, legend_at_bottom=True)
+    # make space for legend (based on heuristic)
+    height = 600
+    if len(values_df_na_dropped.columns) > 8:
+        height = height + (len(values_df_na_dropped.columns)-8) * 12
+
+    line_chart = pygal.Line(show_only_major_dots=True, range=chart_range,
+                            legend_at_bottom=True, height=height)
     line_chart.truncate_legend = -1
-    line_chart.margin_bottom = 50 + (len(values_df_na_dropped.columns) // 2) * 5  # make space for legend (based on heuristic)
+
+    # make space for legend (based on heuristic)
+    line_chart.margin_bottom = 50 + (len(values_df_na_dropped.columns) // 2) * 5
+
     line_chart.legend_at_bottom_columns = 2
     line_chart.style = PYGAL_STYLE
     try:
