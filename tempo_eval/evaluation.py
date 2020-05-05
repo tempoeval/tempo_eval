@@ -1565,14 +1565,17 @@ def basic_statistics(tempo_annotation_set: Annotations,
     index = list(sorted(tempo_annotation_set.keys()))
     for version in index:
         annotations = tempo_annotation_set[version]
-        tempi = [extract_tempo(annotation) for annotation in annotations.values()]
+        # ignore 0.0 BPM estimates.
+        tempi = [extract_tempo(annotation)
+                 for annotation in annotations.values()
+                 if extract_tempo(annotation) > 0.]
         octave, percentage = sweet_octave(tempi)
         avg = mean(tempi)
         if len(tempi) > 1:
             sdev = stdev(tempi, xbar=avg)
         else:
             sdev = np.nan
-        values['Size'].append(len(annotations))
+        values['Size'].append(len(tempi))
         values['Min'].append(float(min(tempi)))
         values['Max'].append(float(max(tempi)))
         values['Avg'].append(float(avg))
