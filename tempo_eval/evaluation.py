@@ -1635,7 +1635,7 @@ ACC2 = Metric('Accuracy2',
               formatted_name='Accuracy<sub>2</sub>',
               description='Accuracy<sub>2</sub> additionally permits '
                           'estimates to be wrong by a factor of 2, 3, '
-                          '&frac12; or &frac13; '
+                          '1/2 or 1/3 '
                           '(so-called *octave errors*).',
               suitability_function=is_single_bpm,
               eval_function=equal2,
@@ -1658,7 +1658,7 @@ APE1 = Metric('APE1', formatted_name='APE<sub>1</sub>',
 APE2 = Metric('APE2', formatted_name='APE<sub>2</sub>',
               description='APE<sub>2</sub> is the minimum of '
                           'APE<sub>1</sub> allowing the octave '
-                          'errors 2, 3, &frac12;, and &frac13;: '
+                          'errors 2, 3, 1/2, and 1/3: '
                           '<code>APE<sub>2</sub>(E) = min('
                           'APE<sub>1</sub>(E), APE<sub>1</sub>(2E), '
                           'APE<sub>1</sub>(3E), APE<sub>1</sub>(&frac12;E), '
@@ -1687,7 +1687,7 @@ PE2 = Metric('PE2', formatted_name='PE<sub>2</sub>',
              description='PE<sub>2</sub> is the signed PE<sub>1</sub> '
                          'corresponding to the minimum absolute '
                          'PE<sub>1</sub> allowing the octave'
-                         'errors 2, 3, &frac12;, and &frac13;: '
+                         'errors 2, 3, 1/2, and 1/3: '
                          '<code>PE<sub>2</sub>(E) = arg min<sub>x</sub>(|x|) with x ∈ '
                          '{PE<sub>1</sub>(E), PE<sub>1</sub>(2E), '
                          'PE<sub>1</sub>(3E), PE<sub>1</sub>(&frac12;E), '
@@ -1721,7 +1721,7 @@ OE2 = Metric('OE2', formatted_name='OE<sub>2</sub>',
              description='OE<sub>2</sub> is the signed OE<sub>1</sub> '
                          'corresponding to the minimum absolute '
                          'OE<sub>1</sub> allowing the octave'
-                         'errors 2, 3, &frac12;, and &frac13;: '
+                         'errors 2, 3, 1/2, and 1/3: '
                          '<code>OE<sub>2</sub>(E) = '
                          'arg min<sub>x</sub>(|x|) with x ∈ '
                          '{OE<sub>1</sub>(E), OE<sub>1</sub>(2E), '
@@ -1753,7 +1753,7 @@ AOE1 = Metric('AOE1', formatted_name='AOE<sub>1</sub>',
 AOE2 = Metric('AOE2', formatted_name='AOE<sub>2</sub>',
               description='AOE<sub>2</sub> is the minimum of '
                           'AOE<sub>1</sub> allowing the octave '
-                          'errors 2, 3, &frac12;, and &frac13;: '
+                          'errors 2, 3, 1/2, and 1/3: '
                           '<code>AOE<sub>2</sub>(E) = min('
                           'AOE<sub>1</sub>(E), AOE<sub>1</sub>(2E), '
                           'AOE<sub>1</sub>(3E), AOE<sub>1</sub>(&frac12;E), '
