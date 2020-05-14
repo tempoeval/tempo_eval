@@ -27,7 +27,7 @@ def parse_boeck2019(input_audio_dir):
         for filename in [f for f in filenames if f.endswith('.beats')]:
             jams_file = join(output_dir, filename.replace('.beats', '.jams'))
             if exists(jams_file):
-                logging.warning('Adding to an existing jams file: {}, {}'.format(jams_file), filename)
+                logging.warning('Adding to an existing jams file: {}, {}'.format(jams_file, filename))
                 jam = jams.load(jams_file)
             else:
                 jam = create_jam(filename.replace('.beats', '.wav'), input_audio_dir,
