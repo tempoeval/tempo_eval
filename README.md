@@ -35,4 +35,20 @@ Please see [here](https://tempoeval.github.io/tempo_eval/changes.html).
 Citing
 ------
 
-TBD
+Schreiber, H., Urbano, J., & Müller, M. (2020).
+[Music Tempo Estimation: Are We Done Yet?](https://transactions.ismir.net/articles/10.5334/tismir.43/galley/52/download/)
+Transactions of the International Society for Music Information Retrieval, 3(1),
+pp. 111–125. DOI: [https://doi.org/10.5334/tismir.43](https://doi.org/10.5334/tismir.43)  
+
+```
+@article{SchreiberUM20_TempoEvaluation_TISMIR,
+	Author = {Hendrik Schreiber and Juli{\'a}n Urbano and Meinard M{\"u}ller},
+	Doi = {10.5334/tismir.43},
+	Journal = {Transactions of the International Society for Music Information Retrieval  ({TISMIR})},
+	Number = {1},
+	Pages = {111--125},
+	Publisher = {Ubiquity Press},
+	Title = {Music Tempo Estimation: Are We Done Yet?},
+	Volume = {3},
+	Year = {2020}}
+```
