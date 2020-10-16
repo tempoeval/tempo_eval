@@ -1,3 +1,6 @@
+[![Build and Test](https://github.com/hendriks73/tempo-cnn/workflows/Build%20and%20Test/badge.svg)](https://github.com/hendriks73/tempo-cnn/actions)
+
+
 tempo_eval
 ==========
 
