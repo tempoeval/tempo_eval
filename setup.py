@@ -69,7 +69,7 @@ setup(name='tempo_eval',
                    'sphinxcontrib-versioning >= 2.2.1',
                    'sphinx-autodoc-typehints >= 1.6.0'],      
           'tests': ['pytest',
-                    'coverage'
+                    'coverage',
                     'pytest-console-scripts']
       },
       classifiers=['Development Status :: 3 - Alpha',
