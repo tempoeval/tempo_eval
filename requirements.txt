@@ -1,4 +1,4 @@
-llvmlite==0.32.1  # needed because of numba issues with later versions, see https://github.com/rapidsai/cuml/issues/2389#issuecomment-642645437
+llvmlite<0.30.0  # needed because of numba issues with later versions, see https://github.com/rapidsai/cuml/issues/2389#issuecomment-642645437
 numba>=0.44.0,<0.45.2
 audioread>=2.0.0
 statsmodels>=0.9.0
