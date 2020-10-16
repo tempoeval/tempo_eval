@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# encoding: utf-8
 """
 This file contains the setup for setuptools to distribute
 everything as a (PyPI) package.
@@ -30,44 +29,15 @@ for directory in annotation_dirs:
     if files:
         data_files.append((directory, files))
 
-# some PyPI metadata
-classifiers = ['Development Status :: 3 - Alpha',
-               'Environment :: Console',
-               'License :: OSI Approved :: ISC License (ISCL)',
-               'Topic :: Multimedia :: Sound/Audio :: Analysis',
-               "Programming Language :: Python :: 3",
-               "Programming Language :: Python :: 3.6",
-               "Programming Language :: Python :: 3.7"]
+# requirements
+with open('requirements.txt', 'r') as fh:
+    requirements = fh.read().splitlines()
 
-install_requires = ['pybtex >= 0.22.2',
-                    'audioread >= 2.0.0',
-                    'scipy >= 1.0.1',
-                    'jams >= 0.3.1',
-                    'matplotlib >= 2.2.2',
-                    'statsmodels >= 0.9.0',
-                    'pygal >= 2.4.0',
-                    'pandas >= 0.23.0',
-                    'markdown >= 3.1',
-                    'pygam',
-                    'numba >=0.44.0, <0.45.2',
-                    ]
-
-extras_require = {
-    'docs': ['sphinx >= 2.0.0',
-             'sphinx_rtd_theme',
-             'sphinxcontrib-versioning >= 2.2.1',
-             'sphinx-autodoc-typehints >= 1.6.0'],
-
-    'tests': ['matplotlib >= 2.2.2',
-              'pytest-cov',
-              'pytest-console-scripts',
-              'pytest < 4']
-}
-
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'),
+# long description
+with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'),
           encoding='utf-8') as f:
     long_description = f.read()
+
 
 # the actual setup routine
 setup(name='tempo_eval',
@@ -93,7 +63,20 @@ setup(name='tempo_eval',
               'convert2jams = tempo_eval.commands:convert2jams_command',
           ]
       },
-      install_requires=install_requires,
-      extras_require=extras_require,
-      classifiers=classifiers,
+      install_requires=requirements,
+      extras_require={
+          'docs': ['sphinx >= 2.0.0',
+                   'sphinx_rtd_theme',
+                   'sphinxcontrib-versioning >= 2.2.1',
+                   'sphinx-autodoc-typehints >= 1.6.0'],      
+          'tests': ['pytest',
+                    'pytest-console-scripts']
+      },
+      classifiers=['Development Status :: 3 - Alpha',
+                   'Environment :: Console',
+                   'License :: OSI Approved :: ISC License (ISCL)',
+                   'Topic :: Multimedia :: Sound/Audio :: Analysis',
+                   'Programming Language :: Python :: 3',
+                   'Programming Language :: Python :: 3.6',
+                   'Programming Language :: Python :: 3.7'],
       zip_safe=False)
