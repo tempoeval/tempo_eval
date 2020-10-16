@@ -236,7 +236,8 @@ def print_report(output_dir: str = './',
         kramdown = format == 'kramdown'
         md = MarkdownWriter(f, jekyll=jekyll, kramdown=kramdown)
         md.h1('tempo_eval_report')
-        md.paragraph('Detailed global tempo estimation evaluations created with [tempo_eval](https://tempoeval.github.io/tempo_eval/).')
+        md.paragraph('Detailed global tempo estimation evaluations created with '
+                     '[tempo_eval](https://tempoeval.github.io/tempo_eval/).')
         md.paragraph('Evaluated corpora:')
         for corpus_name, corpus_file in zip(corpora, corpus_files):
             md.write('- ')
@@ -385,7 +386,8 @@ def print_corpus_report(corpus_name: str,
         else:
             md.h1(corpus_name)
 
-        md.paragraph('This is the [tempo_eval](https://tempoeval.github.io/tempo_eval/) report for the \'{}\' corpus.'.format(corpus_name))
+        md.paragraph(f'This is the [tempo_eval](https://tempoeval.github.io/tempo_eval/) '
+                     f'report for the \'{corpus_name}\' corpus.')
 
         if not html:
             md.paragraph('Reports for other corpora may be found [here](index.md).')
@@ -509,9 +511,9 @@ def _print_tempo_variation(md: MarkdownWriter,
 
 
 def _print_all_corpora_tempo_variation(md: MarkdownWriter,
-                                     reference_names: Iterable[str],
-                                     validate: bool,
-                                     output_dir: str = './') -> None:
+                                       reference_names: Iterable[str],
+                                       validate: bool,
+                                       output_dir: str = './') -> None:
     """
     Print diagram displaying tempo variations in all reference corpora.
 
@@ -1222,9 +1224,9 @@ def _print_metric_over_c_var(md: MarkdownWriter,
 
             _print_line_graph(md, '{}_{}_{}_cv_{}'
                               .format(base_name,
-                                       tempo_ref_name,
-                                       c_var_ref_name,
-                                       metric.name.lower()),
+                                      tempo_ref_name,
+                                      c_var_ref_name,
+                                      metric.name.lower()),
                               values_df,
                               caption='Mean {metric} compared to version {reference} for '
                                       'tracks with c<sub>var</sub> < τ based on beat '
@@ -1281,7 +1283,6 @@ def _print_metric_per_tempo(md: MarkdownWriter,
                 else:
                     v.append(np.nan)
             values[l] = v
-
 
         index = [reference_tempi[item_order[i]] for i in range(len(item_order))]
 
@@ -1385,15 +1386,11 @@ def _print_metric_over_tempo_interval(md: MarkdownWriter,
         if metric.unit:
             y_axis_label = 'Mean {} ({})'.format(metric.name, metric.unit)
         _print_line_graph(md,
-                           '{}_{}_inter_{}'
-                          .format(base_name,
-                                   tempo_ref_name,
-                                   metric.name.lower()),
+                          f'{base_name}_{tempo_ref_name}_inter_{metric.name.lower()}',
                           values_df,
-                          caption='Mean {metric} for estimates compared to version {reference} '
-                                   'for tempo intervals around T.'
-                          .format(reference=md.to_headline_link(tempo_ref_name),
-                                   metric=metric.formatted_name),
+                          caption=f'Mean {metric.formatted_name} for estimates compared '
+                                  f'to version {md.to_headline_link(tempo_ref_name)} '
+                                  f'for tempo intervals around T.',
                           y_axis_label=y_axis_label,
                           output_dir=output_dir)
 
@@ -2273,7 +2270,7 @@ def _print_tolerance_chart(md: MarkdownWriter,
     values_df.index.name = 'Tolerance (%)'
 
     _print_line_graph(md,
-                       '{}_{}_{}'
+                      '{}_{}_{}'
                       .format(base_name,
                               ref_name,
                               metric.name.lower().replace(' ', '_')),
@@ -2281,7 +2278,7 @@ def _print_tolerance_chart(md: MarkdownWriter,
                       caption='Mean {metric} for estimates compared to version '
                               '{reference} depending on tolerance.'
                       .format(reference=md.to_headline_link(ref_name),
-                               metric=metric.formatted_name),
+                              metric=metric.formatted_name),
                       y_axis_label=metric_label,
                       output_dir=output_dir)
 
@@ -2353,9 +2350,7 @@ def _print_annotation_metadata(md: MarkdownWriter,
                     def write_bibtex(bibtex_entry):
                         try:
                             bib_file_name, first_cite_key = _dump_bibtex_entry(output_dir, bibtex_entry)
-                            md.write('[{}]({}) |'
-                                       .format(md_table_escape(first_cite_key),
-                                               dir_filename(bib_file_name)))
+                            md.write(f'[{md_table_escape(first_cite_key)}]({dir_filename(bib_file_name)}) |')
                         except Exception as e:
                             logger.error('Failed to parse annotator bibtex field: {}\nbibtex: {}'
                                          .format(str(e), bibtex_entry))
@@ -2667,9 +2662,9 @@ def _print_gam_plot(md: MarkdownWriter,
         if Xy.shape[0] == 0:
             raise ValueError('No valid evaluation values in \'\'.'.format(column))
 
-        X = Xy[:,0]
+        X = Xy[:, 0]
         X = np.expand_dims(X, axis=1)
-        y = Xy[:,1]
+        y = Xy[:, 1]
 
         gam = LinearGAM().gridsearch(X, y, progress=False)
         if x_grid is None:
@@ -2683,8 +2678,8 @@ def _print_gam_plot(md: MarkdownWriter,
         gam_values_df[column] = YY
         if confidence_interval:
             cf = gam.confidence_intervals(x_grid)
-            gam_values_df[column + "_lowerci"] = cf[:,0]
-            gam_values_df[column + "_upperci"] = cf[:,1]
+            gam_values_df[column + "_lowerci"] = cf[:, 0]
+            gam_values_df[column + "_upperci"] = cf[:, 1]
 
     file_names = []
     for image_format in image_formats:
@@ -2735,8 +2730,8 @@ def create_file(output_dir: str, name: str, format: str = 'csv') -> str:
             .replace('\\', '_')
             .replace(' ', '_')
             .replace(':', '')
-            .replace(';', '')
-        , format))
+            .replace(';', ''),
+        format))
 
 
 def dir_filename(file_name: str) -> str:

@@ -33,7 +33,7 @@ using different annotations metadata versions.
 
 Unless otherwise specified, tempo_eval creates reports for all known corpora.
 However, if estimates or references are explicitly specified, only
-reports for corpora occurring in the user-provided annotations are generated. 
+reports for corpora occurring in the user-provided annotations are generated.
 
 License: ISC License
 ''')
@@ -129,7 +129,7 @@ Supported are:
    either a single float as value or a list of three values (MIREX).
    Names must not contain a file extension.
  - CSV/TSV files containing two columns, name and value. Names must not
-   contain a file extension.   
+   contain a file extension.
 
 Since JAMS require a duration, this script makes an effort to find a
 corresponding audio file and read its duration. To achieve this, it makes
@@ -137,7 +137,7 @@ the assumption that the audio file name corresponds to the name of either
 the used annotation file or the annotation name. E.g. an annotation file
 "my_track.txt" should correspond to an audio file named "my_track.mp3"
 or "my_track.wav" (any format that can be read by the library 'audioread' is
-supported). Note that annotation names should be unique. 
+supported). Note that annotation names should be unique.
 
 License: ISC License
 ''')
@@ -217,7 +217,7 @@ License: ISC License
 
     if args.template:
         logging.debug('Using provided annotation metadata template: {}'
-                     .format(args.template))
+                      .format(args.template))
         annotation_metadata = _read_annotation_metadata_template(args.template,
                                                                  args.verbose)
         if isinstance(annotation_metadata, int):
@@ -494,4 +494,3 @@ def _read_annotation_metadata_template(template, verbose):
 
 if __name__ == '__main__':
     tempo_eval_command()
-

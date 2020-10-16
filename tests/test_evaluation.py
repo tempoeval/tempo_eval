@@ -279,7 +279,7 @@ def test_pe2():
     assert math.isnan(pe2(0, 10.))
     assert PE2.signed
 
-    
+
 def test_fraction_below_threshold():
     fraction = fraction_lt_thresholds([1, 4, 2, 3], [4, 3])
     assert fraction == [0.75, 0.5]

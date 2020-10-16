@@ -317,8 +317,7 @@ def equal1(reference_tempo: PlainTempo,
         return False
     if tolerance < 0 or tolerance > 1:
         raise ValueError('Tolerance must be in [0, 1]')
-    return abs(reference_tempo*factor-estimated_tempo)\
-           <= (reference_tempo*factor * tolerance)
+    return abs(reference_tempo*factor-estimated_tempo) <= (reference_tempo*factor * tolerance)
 
 
 @njit

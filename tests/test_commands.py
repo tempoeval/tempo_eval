@@ -174,7 +174,7 @@ def test_convert2jams_json(script_runner, tmpdir):
     assert jam.annotations[0].annotation_metadata.corpus == corpus
     assert jam.annotations[0].annotation_metadata.version == version
     assert jam.annotations['tempo'][0]['data'][0].value == 1.
-    assert pytest.approx(0.2, jam.annotations['tempo'][0]['data'][0].confidence )
+    assert pytest.approx(0.2, jam.annotations['tempo'][0]['data'][0].confidence)
     assert jam.annotations['tempo'][0]['data'][1].value == 10.
     assert pytest.approx(0.8, jam.annotations['tempo'][0]['data'][1].confidence)
 

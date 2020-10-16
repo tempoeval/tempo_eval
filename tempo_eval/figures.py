@@ -135,7 +135,7 @@ def render_violin_plot(file_names: Iterable[str],
 
 
 def render_tag_violin_plot(file_names: Iterable[str],
-                           values_df: Dict[str,pd.DataFrame],
+                           values_df: Dict[str, pd.DataFrame],
                            caption: str = None,
                            axis_label: str = None) -> None:
     """
@@ -365,9 +365,9 @@ def _render_box_plot_pygal(file_names: Iterable[str],
         y_convert = lambda d: d * 100.
         chart_range = (chart_range[0] * 100.0, chart_range[1] * 100.0)
         formatter = lambda x: "%.1f" % x
-    x_convert = lambda d: d
-    if '%' in values_df.index.name:
-        x_convert = lambda d: round(d * 100.)
+    # x_convert = lambda d: d
+    # if '%' in values_df.index.name:
+    #     x_convert = lambda d: round(d * 100.)
 
     box_plot = pygal.Box(range=chart_range, legend_at_bottom=True, mode="stdev")
     box_plot.truncate_legend = -1
@@ -380,10 +380,10 @@ def _render_box_plot_pygal(file_names: Iterable[str],
         box_plot.title = 'No Name'
     box_plot.y_title = y_axis_label
     box_plot.x_title = values_df.index.name
-    #box_plot.x_label_rotation = 90
-    #box_plot.show_minor_x_labels = False
-    #box_plot.x_labels_major_count = 11
-    #box_plot.show_x_guides = True
+    # box_plot.x_label_rotation = 90
+    # box_plot.show_minor_x_labels = False
+    # box_plot.x_labels_major_count = 11
+    # box_plot.show_x_guides = True
     box_plot.value_formatter = formatter
 
     for column in values_df.columns:
@@ -431,10 +431,10 @@ def _render_scatter_plot_matplotlib(file_names: Iterable[str],
                                     values_df: pd.DataFrame,
                                     caption: str = None,
                                     y_axis_label: str = None) -> None:
-    y_convert = lambda d: d
+    # y_convert = lambda d: d
     chart_range = _find_appropriate_chart_range(values_df)
     if y_axis_label and '%' in y_axis_label:
-        y_convert = lambda d: d * 100.
+        # y_convert = lambda d: d * 100.
         chart_range = (chart_range[0] * 100.0, chart_range[1] * 100.0)
 
     fig = plt.figure()
@@ -460,8 +460,8 @@ def _render_scatter_plot_matplotlib(file_names: Iterable[str],
                        if isfinite(d) and isfinite(v)])
 
 
-        X = Xy[:,0]
-        y = Xy[:,1]
+        X = Xy[:, 0]
+        y = Xy[:, 1]
         ax.scatter(X, y, s=2, label=column)
 
         # add pygam
@@ -504,8 +504,8 @@ def _render_scatter_plot_matplotlib(file_names: Iterable[str],
         Xy = np.array([[v, d * factor]
                        for v, d in zip(values_df.index.values, values_df[column].values)
                        if isfinite(d) and isfinite(v)])
-        X = Xy[:,0]
-        y = Xy[:,1]
+        X = Xy[:, 0]
+        y = Xy[:, 1]
         ax.scatter(X, y, s=2, label=column)
 
     ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), ncol=2, frameon=False)
@@ -612,9 +612,9 @@ def _render_violin_plot_matplotlib(file_names: Iterable[str],
 
 
 def _render_tag_violin_plot_matplotlib(file_names: Iterable[str],
-                                   values_df: Dict[str, pd.DataFrame],
-                                   caption: str = None,
-                                   axis_label: str = None) -> None:
+                                       values_df: Dict[str, pd.DataFrame],
+                                       caption: str = None,
+                                       axis_label: str = None) -> None:
     tags = list(values_df.keys())
     tags.sort()
     one_df = values_df[tags[0]]
@@ -664,7 +664,8 @@ def _render_tag_violin_plot_matplotlib(file_names: Iterable[str],
             if sample:
                 data.append(sample)
             else:
-                logging.warning('Violin plot: Dataset without finite values: {}. Using single zero distribution.'.format(column))
+                logging.warning(f'Violin plot: Dataset without finite values: {column}. '
+                                f'Using single zero distribution.')
                 data.append([0.])
             positions.append(pos)
             pos += 1
@@ -770,4 +771,3 @@ def _check_format(file_names: Iterable[str]):
         extension = splitext(f)[1]
         if extension not in SUPPORTED_FORMATS:
             raise ValueError('Unsupported output format: {}'.format(extension))
-

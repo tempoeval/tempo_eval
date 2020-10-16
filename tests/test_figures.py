@@ -62,4 +62,3 @@ def test_find_appropriate_chart_range():
     df = pd.DataFrame({'col': [0.2, -0.1]})
     chart_range = _find_appropriate_chart_range(df)
     assert chart_range == (-0.1, 0.2)
-
