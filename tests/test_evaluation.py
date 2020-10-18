@@ -380,7 +380,13 @@ def test_basic_statistics():
     annotations = read_reference_annotations('ballroom', validate=False)['tempo']
     statistics = basic_statistics(annotations)
     assert len(statistics.columns) == 7
-    assert statistics.Size.mean() == 698
+    assert statistics['Size'].loc['1.0'] == 698
+    assert statistics['Avg'].loc['1.0'] == pytest.approx(130.14469)
+    assert statistics['Max'].loc['1.0'] == 224.0
+    assert statistics['Min'].loc['1.0'] == 60.0
+    assert statistics['Stdev'].loc['1.0'] == pytest.approx(39.5278)
+    assert statistics['Sweet Oct. Start'].loc['1.0'] == 91.
+    assert statistics['Sweet Oct. Coverage'].loc['1.0'] == pytest.approx(0.713467)
 
 
 def test_sweet_octave():
