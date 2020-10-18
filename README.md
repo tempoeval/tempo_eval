@@ -1,4 +1,4 @@
-[![Build and Test](https://github.com/hendriks73/tempo-cnn/workflows/Build%20and%20Test/badge.svg)](https://github.com/hendriks73/tempo-cnn/actions)
+[![Build and Test](https://github.com/tempoeval/tempo_eval/workflows/Build%20and%20Test/badge.svg)](https://github.com/tempoeval/tempo_eval/actions)
 
 
 tempo_eval
