@@ -35,14 +35,14 @@ def test_convert2jams_help(script_runner):
     assert ret.stderr == ''
 
 
-def test_convert2jams_required_args(script_runner, tmpdir, caplog):
+def test_convert2jams_required_args(script_runner, tmpdir):
 
     ret = script_runner.run('convert2jams',
                             '-i', str(tmpdir),
                             '-a', 'some_dir')
     assert not ret.success
     assert 2 == ret.returncode  # because corpus is missing
-    assert 'No corpus name provided' in caplog.text
+    assert 'No corpus name provided' in ret.stderr
 
     ret = script_runner.run('convert2jams',
                             '-i', str(tmpdir),
@@ -50,7 +50,7 @@ def test_convert2jams_required_args(script_runner, tmpdir, caplog):
                             '-c', 'corpus')
     assert not ret.success
     assert 2 == ret.returncode  # because version is missing
-    assert 'No annotation version provided' in caplog.text
+    assert 'No annotation version provided' in ret.stderr
 
     ret = script_runner.run('convert2jams',
                             '-i', str(tmpdir),
@@ -60,7 +60,7 @@ def test_convert2jams_required_args(script_runner, tmpdir, caplog):
     assert ret.success  # because input dir is empty
 
 
-def test_convert2jams_unsupported_format(script_runner, tmpdir, caplog):
+def test_convert2jams_unsupported_format(script_runner, tmpdir):
 
     csv_file = join(str(tmpdir), 'test.xls')
     with open(csv_file, mode='w', encoding='utf-8') as f:
@@ -77,10 +77,10 @@ def test_convert2jams_unsupported_format(script_runner, tmpdir, caplog):
 
     # unsupported format
     assert not ret.success
-    assert 'Input data format is not supported.' in caplog.text
+    assert 'Input data format is not supported.' in ret.stderr
 
 
-def test_convert2jams_fake_audio_files(script_runner, tmpdir, caplog):
+def test_convert2jams_fake_audio_files(script_runner, tmpdir):
 
     csv_file = join(str(tmpdir), 'test.csv')
     jams_file = join(str(tmpdir), 'abc.jams')
@@ -101,7 +101,7 @@ def test_convert2jams_fake_audio_files(script_runner, tmpdir, caplog):
                             '--verbose')
     assert ret.success
     jams.load(jams_file)
-    assert 'Failed to extract audio duration' in caplog.text
+    assert 'Failed to extract audio duration' in ret.stderr
 
 
 def test_convert2jams_csv(script_runner, tmpdir):
@@ -234,7 +234,7 @@ def test_convert2jams_text_files2(script_runner, tmpdir):
     jams.load(jams_file)
 
 
-def test_convert2jams_text_files_flatten(script_runner, tmpdir, caplog):
+def test_convert2jams_text_files_flatten(script_runner, tmpdir):
 
     text_file = join(str(tmpdir), 'abc.txt')
     with open(text_file, mode='w', encoding='utf-8') as f:
@@ -251,7 +251,7 @@ def test_convert2jams_text_files_flatten(script_runner, tmpdir, caplog):
 
     # flatten is not supported for text files (yet)
     assert not ret.success
-    assert 'Flatten is currently only supported' in caplog.text
+    assert 'Flatten is currently only supported' in ret.stderr
 
 
 def test_convert2jams_text_files_bad_format(script_runner, tmpdir):
@@ -294,7 +294,7 @@ def test_convert2jams_text_files_with_bpm_extension(script_runner, tmpdir):
     jams.load(jams_file)
 
 
-def test_convert2jams_template(script_runner, tmpdir, caplog):
+def test_convert2jams_template(script_runner, tmpdir):
 
     # create template..
     csv_file_template = join(str(tmpdir), 'template.csv')
@@ -346,7 +346,7 @@ def test_convert2jams_template(script_runner, tmpdir, caplog):
                             '--template', no_corpus_template)
 
     assert not ret.success
-    assert 'Template annotation metadata must contain corpus name' in caplog.text
+    assert 'Template annotation metadata must contain corpus name' in ret.stderr
 
     ret = script_runner.run('convert2jams',
                             '-i', csv_file_test,
@@ -354,10 +354,10 @@ def test_convert2jams_template(script_runner, tmpdir, caplog):
                             '--template', no_version_template)
 
     assert not ret.success
-    assert 'Template annotation metadata must contain version' in caplog.text
+    assert 'Template annotation metadata must contain version' in ret.stderr
 
 
-def test_convert2jams_bad_template(script_runner, tmpdir, caplog):
+def test_convert2jams_bad_template(script_runner, tmpdir):
 
     csv_file_template = join(str(tmpdir), 'template.csv')
     with open(csv_file_template, mode='w', encoding='utf-8') as f:
@@ -370,7 +370,7 @@ def test_convert2jams_bad_template(script_runner, tmpdir, caplog):
                             '--template', csv_file_template)
 
     assert not ret.success
-    assert 'Failed to extract annotation metadata from template file' in caplog.text
+    assert 'Failed to extract annotation metadata from template file' in ret.stderr
 
     ret = script_runner.run('convert2jams',
                             '-i', csv_file_template,
@@ -379,7 +379,7 @@ def test_convert2jams_bad_template(script_runner, tmpdir, caplog):
                             '--template', 'does_not_exist.jams')
 
     assert not ret.success
-    assert 'Annotation metadata template file does not exists' in caplog.text
+    assert 'Annotation metadata template file does not exists' in ret.stderr
 
     ret = script_runner.run('convert2jams',
                             '-i', csv_file_template,
@@ -388,10 +388,10 @@ def test_convert2jams_bad_template(script_runner, tmpdir, caplog):
                             '--template', str(tmpdir))
 
     assert not ret.success
-    assert 'Annotation metadata template is not a file' in caplog.text
+    assert 'Annotation metadata template is not a file' in ret.stderr
 
 
-def test_convert2jams_input_does_not_exist(script_runner, caplog):
+def test_convert2jams_input_does_not_exist(script_runner,):
 
     corpus = 'corpus'
     version = 'version'
@@ -401,7 +401,7 @@ def test_convert2jams_input_does_not_exist(script_runner, caplog):
                             '-c', corpus,
                             '-v', version)
     assert not ret.success
-    assert 'Input file/dir does not exists' in caplog.text
+    assert 'Input file/dir does not exists' in ret.stderr
 
 
 def test_convert2jams_bibtex_file(script_runner, tmpdir):
@@ -429,7 +429,7 @@ def test_convert2jams_bibtex_file(script_runner, tmpdir):
     assert jam.annotations[0].annotation_metadata.annotator['bibtex'] == bibstuff
 
 
-def test_convert2jams_jam_exists(script_runner, tmpdir, caplog):
+def test_convert2jams_jam_exists(script_runner, tmpdir):
 
     csv_file = join(str(tmpdir), 'test.csv')
     with open(csv_file, mode='w', encoding='utf-8') as f:
@@ -450,4 +450,4 @@ def test_convert2jams_jam_exists(script_runner, tmpdir, caplog):
                             '-c', corpus,
                             '-v', version)
     assert not ret.success
-    assert 'JAMS file already exists' in caplog.text
+    assert 'JAMS file already exists' in ret.stderr
