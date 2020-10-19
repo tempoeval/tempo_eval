@@ -1,5 +1,6 @@
+[![ISCL](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![Build and Test](https://github.com/tempoeval/tempo_eval/workflows/Build%20and%20Test/badge.svg)](https://github.com/tempoeval/tempo_eval/actions)
-
+[![CodeCov](https://codecov.io/gh/tempoeval/tempo_eval/branch/dev/graph/badge.svg?token=H98FM0SKQL)](https://github.com/tempoeval/tempo_eval)
 
 tempo_eval
 ==========

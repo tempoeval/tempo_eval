@@ -54,9 +54,10 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          coverage run --source ./tempo_eval -m pytest --verbose --junitxml=pytest_report${{ matrix.python-version }}.xml
-          coverage report -m
-          coverage xml -o coverage${{ matrix.python-version }}.xml
+          python -m pytest --verbose --cov-report=xml --cov=tempo_eval --junitxml=pytest_report${{ matrix.python-version }}.xml
+#          coverage run --source ./tempo_eval -m pytest --verbose --junitxml=pytest_report${{ matrix.python-version }}.xml
+#          coverage report -m
+#          coverage xml -o coverage${{ matrix.python-version }}.xml
       - name: Build docs
         run: |
           make html
@@ -68,10 +69,15 @@ jobs:
           path: pytest_report${{ matrix.python-version }}.xml
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
-      - name: Upload coverageresults
-        uses: actions/upload-artifact@v2
+#      - name: Upload coverageresults
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: coverage-${{ matrix.python-version }}
+#          path: coverage${{ matrix.python-version }}.xml
+#        # Use always() to always run this step to publish test results when there are test failures
+#        if: ${{ always() }}
+      - name: Upload CodeCov Report
+        uses: codecov/codecov-action@v1
         with:
-          name: coverage-${{ matrix.python-version }}
-          path: coverage${{ matrix.python-version }}.xml
-        # Use always() to always run this step to publish test results when there are test failures
+          token: ${{ secrets.CODECOV_TOKEN }}
         if: ${{ always() }}
