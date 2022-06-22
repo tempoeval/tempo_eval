@@ -648,13 +648,14 @@ def _render_tag_violin_plot_matplotlib(file_names: Iterable[str],
     data = []
     positions = []
     colors = []
+    available_colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
     pos = 0
     patches = []
     legend_labels = []
     for tag in tags:
         df = values_df[tag]
         for i, column in enumerate(df.columns):
-            color = plt.rcParams['axes.prop_cycle'].by_key()['color'][i]
+            color = available_colors[i % len(available_colors)]
             colors.append(color)
             if len(patches) < len(df.columns):
                 patches.append(Patch(color=color))
