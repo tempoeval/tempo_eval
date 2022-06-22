@@ -6,7 +6,7 @@ from os.path import join, exists
 
 import jams
 
-from tempo_eval.parser.util import create_tempo_annotation, create_jam, get_bibtex_entry, get_base, create_annotator
+from tempo_eval.parser.util import create_tempo_annotation, create_jam, get_base, create_annotator
 from tempo_eval.evaluation import get_estimates_path
 
 

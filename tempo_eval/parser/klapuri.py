@@ -67,7 +67,7 @@ def parse_klapuri2006(input_audio_dir):
     # the third table is the one we want
     df = tables[2]
     # drop first two and last rows (bad data)
-    df.drop([0,1,476], inplace=True)
+    df.drop([0, 1, 476], inplace=True)
     # fix column names
     df.columns = ['artist', 'title', 'genre', 'tatum', 'tactus', 'measure']
     # fix nan values in artist column
@@ -124,7 +124,7 @@ def derive_tags(beats_per_measure, genre, stability):
     if beats_per_measure > 1:
         tags.append('{} beats/measure'.format(beats_per_measure))
     else:
-        tags.append('unkown meter'.format(beats_per_measure))
+        tags.append('unkown meter')
     for s in stability:
         if s == -1 or s == -3:
             tags.append('tempo discontinuity')

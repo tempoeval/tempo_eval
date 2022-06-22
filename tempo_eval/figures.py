@@ -459,7 +459,6 @@ def _render_scatter_plot_matplotlib(file_names: Iterable[str],
                        for v, d in zip(values_df.index.values, values_df[column].values)
                        if isfinite(d) and isfinite(v)])
 
-
         X = Xy[:, 0]
         y = Xy[:, 1]
         ax.scatter(X, y, s=2, label=column)

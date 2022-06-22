@@ -536,7 +536,7 @@ def _print_all_corpora_tempo_variation(md: MarkdownWriter,
                 # get beat annotations and show percentage of dataset at different cv
                 # list 0.05 and 0.1
                 fractions_lt_c_var = fraction_lt_c_var(extract_c_var_from_beats(beat_references),
-                                                                thresholds=cv_tresholds)
+                                                       thresholds=cv_tresholds)
                 y_values.update({'{} {}'.format(corpus_name, l): fractions_lt_c_var[l]
                                  for l in fractions_lt_c_var.keys()})
         except FileNotFoundError as fnfe:
@@ -1232,8 +1232,8 @@ def _print_metric_over_c_var(md: MarkdownWriter,
                                       'tracks with c<sub>var</sub> < τ based on beat '
                                       'annotations from {cvar}.'
                               .format(reference=md.to_headline_link(tempo_ref_name),
-                                       metric=metric.formatted_name,
-                                       cvar=md.to_headline_link(tempo_ref_name)),
+                                      metric=metric.formatted_name,
+                                      cvar=md.to_headline_link(tempo_ref_name)),
                               y_axis_label=y_axis_label,
                               output_dir=output_dir)
 
@@ -1843,7 +1843,7 @@ def _print_differing_items(md: MarkdownWriter,
             if len(diff_in_all) == 1:
                 md.writeln('None of the estimators estimated the '
                            'following item \'correctly\' using {metric}:'
-                           .format(count=len(diff_in_all), metric=metric.formatted_name), strong=True)
+                           .format(metric=metric.formatted_name), strong=True)
             else:
                 md.writeln('None of the estimators estimated the '
                            'following {count} items \'correctly\' using {metric}:'
@@ -2120,7 +2120,7 @@ def _print_mirex_table(md: MarkdownWriter,
         md.write('Raw data {metric}: '.format(metric=metric.formatted_name))
         for k, v in raw_tables.items():
             md.write('[{format}]({path} "Download raw data as {format}") '
-                     .format(metric=metric.formatted_name, format=k.upper(), path=v))
+                     .format(format=k.upper(), path=v))
         md.paragraph()
 
     for i in range(len(metrics)):
@@ -2310,7 +2310,7 @@ def _print_annotation_metadata(md: MarkdownWriter,
     for name in sorted(annotation_set.keys()):
         md.h3('{}'.format(name))
 
-        md.writeln('| Attribute | Value |\n| --- | --- |'.format(name))
+        md.writeln('| Attribute | Value |\n| --- | --- |')
         annotations = annotation_set[name]
         values = list(annotations.values())
 
@@ -2660,7 +2660,7 @@ def _print_gam_plot(md: MarkdownWriter,
                        if isfinite(d) and isfinite(v)])
 
         if Xy.shape[0] == 0:
-            raise ValueError('No valid evaluation values in \'\'.'.format(column))
+            raise ValueError('No valid evaluation values in \'{}\'.'.format(column))
 
         X = Xy[:, 0]
         X = np.expand_dims(X, axis=1)

@@ -92,9 +92,9 @@ def _create_faraldo2017_key_annotation(key):
         annotator={'bibtex': get_bibtex_entry('Faraldo2017'),
                    'ref_url': 'https://github.com/GiantSteps/giantsteps-mtg-key-dataset'})
     key_mode.append(time=0.0,
-                 duration='nan',
-                 value=key,
-                 confidence=1.0)
+                    duration='nan',
+                    value=key,
+                    confidence=1.0)
     return key_mode
 
 

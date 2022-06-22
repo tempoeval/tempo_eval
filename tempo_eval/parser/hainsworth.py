@@ -12,6 +12,7 @@ from tempo_eval.evaluation import get_references_path
 CORPUS = 'hainsworth'
 CURATOR = jams.Curator(name='Stephen Webley Hainsworth', email='swh21@eng.cam.ac.uk')
 
+
 def parse(*args, **kwargs):
     input_audio_dir = args[0]
     parse_hainsworth2004(input_audio_dir)

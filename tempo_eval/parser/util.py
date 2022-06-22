@@ -122,7 +122,7 @@ def _get_duration(file_names, base, dirpath):
 
 def timestamps_to_bpm(timestamps: List[float], meter: int = 1) -> Tuple[float, float, float, float]:
     if meter < 1:
-        raise ValueError('meter must be greater than 0: '.format(meter))
+        raise ValueError('meter must be greater than 0: {}'.format(meter))
     ibis = []
     for position in range(meter):
         corresponding = corresponding_timestamps(timestamps, meter, position)

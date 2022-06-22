@@ -31,7 +31,7 @@ def parse():
     args = parser.parse_args()
 
     tracks = _load(join(args.fma, 'tracks.csv'))
-    small_tracks_df =  tracks.loc[tracks['set', 'subset'] == args.subset]
+    small_tracks_df = tracks.loc[tracks['set', 'subset'] == args.subset]
     corpus = 'fma_' + args.subset
     jams_dir = get_references_path(corpus, 'jams')
     input_audio_dir = args.input_audio
