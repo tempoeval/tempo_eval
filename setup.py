@@ -5,38 +5,11 @@ everything as a (PyPI) package.
 
 import glob
 import os
-import sys
-import tarfile
 from importlib.machinery import SourceFileLoader
 from os import path, listdir
 from os.path import join, isfile
 
 from setuptools import setup, find_packages
-
-
-def get_data_files():
-    """
-    Define the data to be included in the PyPI package
-
-    :return: list of (dir, file) tuples
-    """
-    # when creating an sdist or a wheel, tar.xz the annotations to
-    # save disk space when the dist package is installed
-    dist = 'sdist' in sys.argv or 'wheel' in sys.argv
-    if dist:
-        with tarfile.open('annotations.tar.xz', 'x:xz') as tar:
-            tar.add('annotations', arcname=os.path.basename('annotations'))
-
-    data_files = []
-    annotation_dirs = glob.glob(join('annotations', '**') + os.sep, recursive=True)
-    for directory in annotation_dirs:
-        files = [join(directory, f) for f in listdir(directory)
-                 if isfile(join(directory, f)) and not f.startswith('.')]
-        if files:
-            data_files.append((directory, files))
-
-    return data_files
-
 
 # define version
 version = SourceFileLoader('tempo_eval.version',
@@ -44,6 +17,16 @@ version = SourceFileLoader('tempo_eval.version',
 
 # include references bibtext files
 package_data = {'tempo_eval': ['*.bib']}
+
+# define the data to be included in the PyPI package
+data_files = []
+annotation_dirs = glob.glob(join('annotations', '**') + os.sep,
+                            recursive=True)
+for directory in annotation_dirs:
+    files = [join(directory, f) for f in listdir(directory)
+             if isfile(join(directory, f)) and not f.startswith('.')]
+    if files:
+        data_files.append((directory, files))
 
 # requirements
 with open('requirements.txt', 'r') as fh:
@@ -69,7 +52,7 @@ setup(name='tempo_eval',
       license='ISC',
       packages=find_packages(exclude=['tests', 'docs']),
       package_data=package_data,
-      data_files=get_data_files(),
+      data_files=data_files,
       exclude_package_data={
           '': ['tests', 'docs']
       },
@@ -84,7 +67,7 @@ setup(name='tempo_eval',
           'docs': ['sphinx >= 2.0.0',
                    'sphinx_rtd_theme',
                    'sphinxcontrib-versioning >= 2.2.1',
-                   'sphinx-autodoc-typehints >= 1.6.0'],
+                   'sphinx-autodoc-typehints >= 1.6.0'],      
           'tests': ['pytest',
                     'pytest-cov',
                     'pytest-console-scripts']
