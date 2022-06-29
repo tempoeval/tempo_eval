@@ -1,70 +1,35 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tempo_eval.evaluation &mdash; tempo_eval 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>tempo_eval.evaluation &mdash; tempo_eval 0.1.0 documentation</title>
-  
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../index.html" class="icon icon-home"> tempo_eval
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.1
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,17 +37,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
@@ -95,66 +50,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">tempo_eval</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Module code</a> &raquo;</li>
-        
       <li>tempo_eval.evaluation</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for tempo_eval.evaluation</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Core functions for evaluating tempo jams.</span>
@@ -164,21 +83,21 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">bisect</span> <span class="k">import</span> <span class="n">bisect_left</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">walk</span><span class="p">,</span> <span class="n">listdir</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">isdir</span>
-<span class="kn">from</span> <span class="nn">statistics</span> <span class="k">import</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">mean</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">walk</span><span class="p">,</span> <span class="n">listdir</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">isdir</span>
+<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">mean</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Set</span>
 
 <span class="kn">import</span> <span class="nn">jams</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">statsmodels.stats.contingency_tables</span>
-<span class="kn">from</span> <span class="nn">numba</span> <span class="k">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">objmode</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">ttest_rel</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">objmode</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ttest_rel</span>
 
 <span class="kn">import</span> <span class="nn">tempo_eval</span>
-<span class="kn">from</span> <span class="nn">tempo_eval.parser.util</span> <span class="k">import</span> <span class="n">timestamps_to_bpm</span>
+<span class="kn">from</span> <span class="nn">tempo_eval.parser.util</span> <span class="kn">import</span> <span class="n">timestamps_to_bpm</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;tempo_eval&#39;</span><span class="p">)</span>
 
@@ -214,7 +133,7 @@
 <span class="sd">    [-0.02271693594286862]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Metric.__init__"><a class="viewcode-back" href="../../generated/tempo_eval.Metric.html#tempo_eval.Metric.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="Metric.__init__"><a class="viewcode-back" href="../../generated/tempo_eval.Metric.html#tempo_eval.Metric.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                  <span class="n">formatted_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -269,7 +188,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">suitability_function</span> <span class="o">=</span> <span class="n">suitability_function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">significant_difference_function</span> <span class="o">=</span> <span class="n">significant_difference_function</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
     <span class="k">def</span> <span class="nf">_create_eval_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span>\
@@ -1723,14 +1642,17 @@
     <span class="n">index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">tempo_annotation_set</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
     <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
         <span class="n">annotations</span> <span class="o">=</span> <span class="n">tempo_annotation_set</span><span class="p">[</span><span class="n">version</span><span class="p">]</span>
-        <span class="n">tempi</span> <span class="o">=</span> <span class="p">[</span><span class="n">extract_tempo</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span> <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="c1"># ignore 0.0 BPM estimates.</span>
+        <span class="n">tempi</span> <span class="o">=</span> <span class="p">[</span><span class="n">extract_tempo</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                 <span class="k">if</span> <span class="n">extract_tempo</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.</span><span class="p">]</span>
         <span class="n">octave</span><span class="p">,</span> <span class="n">percentage</span> <span class="o">=</span> <span class="n">sweet_octave</span><span class="p">(</span><span class="n">tempi</span><span class="p">)</span>
         <span class="n">avg</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">tempi</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tempi</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">sdev</span> <span class="o">=</span> <span class="n">stdev</span><span class="p">(</span><span class="n">tempi</span><span class="p">,</span> <span class="n">xbar</span><span class="o">=</span><span class="n">avg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">sdev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-        <span class="n">values</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">))</span>
+        <span class="n">values</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tempi</span><span class="p">))</span>
         <span class="n">values</span><span class="p">[</span><span class="s1">&#39;Min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">tempi</span><span class="p">)))</span>
         <span class="n">values</span><span class="p">[</span><span class="s1">&#39;Max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">tempi</span><span class="p">)))</span>
         <span class="n">values</span><span class="p">[</span><span class="s1">&#39;Avg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">avg</span><span class="p">))</span>
@@ -1793,7 +1715,7 @@
               <span class="n">formatted_name</span><span class="o">=</span><span class="s1">&#39;Accuracy&lt;sub&gt;2&lt;/sub&gt;&#39;</span><span class="p">,</span>
               <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Accuracy&lt;sub&gt;2&lt;/sub&gt; additionally permits &#39;</span>
                           <span class="s1">&#39;estimates to be wrong by a factor of 2, 3, &#39;</span>
-                          <span class="s1">&#39;&amp;frac12; or &amp;frac13; &#39;</span>
+                          <span class="s1">&#39;1/2 or 1/3 &#39;</span>
                           <span class="s1">&#39;(so-called *octave errors*).&#39;</span><span class="p">,</span>
               <span class="n">suitability_function</span><span class="o">=</span><span class="n">is_single_bpm</span><span class="p">,</span>
               <span class="n">eval_function</span><span class="o">=</span><span class="n">equal2</span><span class="p">,</span>
@@ -1816,7 +1738,7 @@
 <span class="n">APE2</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="s1">&#39;APE2&#39;</span><span class="p">,</span> <span class="n">formatted_name</span><span class="o">=</span><span class="s1">&#39;APE&lt;sub&gt;2&lt;/sub&gt;&#39;</span><span class="p">,</span>
               <span class="n">description</span><span class="o">=</span><span class="s1">&#39;APE&lt;sub&gt;2&lt;/sub&gt; is the minimum of &#39;</span>
                           <span class="s1">&#39;APE&lt;sub&gt;1&lt;/sub&gt; allowing the octave &#39;</span>
-                          <span class="s1">&#39;errors 2, 3, &amp;frac12;, and &amp;frac13;: &#39;</span>
+                          <span class="s1">&#39;errors 2, 3, 1/2, and 1/3: &#39;</span>
                           <span class="s1">&#39;&lt;code&gt;APE&lt;sub&gt;2&lt;/sub&gt;(E) = min(&#39;</span>
                           <span class="s1">&#39;APE&lt;sub&gt;1&lt;/sub&gt;(E), APE&lt;sub&gt;1&lt;/sub&gt;(2E), &#39;</span>
                           <span class="s1">&#39;APE&lt;sub&gt;1&lt;/sub&gt;(3E), APE&lt;sub&gt;1&lt;/sub&gt;(&amp;frac12;E), &#39;</span>
@@ -1845,7 +1767,7 @@
              <span class="n">description</span><span class="o">=</span><span class="s1">&#39;PE&lt;sub&gt;2&lt;/sub&gt; is the signed PE&lt;sub&gt;1&lt;/sub&gt; &#39;</span>
                          <span class="s1">&#39;corresponding to the minimum absolute &#39;</span>
                          <span class="s1">&#39;PE&lt;sub&gt;1&lt;/sub&gt; allowing the octave&#39;</span>
-                         <span class="s1">&#39;errors 2, 3, &amp;frac12;, and &amp;frac13;: &#39;</span>
+                         <span class="s1">&#39;errors 2, 3, 1/2, and 1/3: &#39;</span>
                          <span class="s1">&#39;&lt;code&gt;PE&lt;sub&gt;2&lt;/sub&gt;(E) = arg min&lt;sub&gt;x&lt;/sub&gt;(|x|) with x ∈ &#39;</span>
                          <span class="s1">&#39;{PE&lt;sub&gt;1&lt;/sub&gt;(E), PE&lt;sub&gt;1&lt;/sub&gt;(2E), &#39;</span>
                          <span class="s1">&#39;PE&lt;sub&gt;1&lt;/sub&gt;(3E), PE&lt;sub&gt;1&lt;/sub&gt;(&amp;frac12;E), &#39;</span>
@@ -1879,7 +1801,7 @@
              <span class="n">description</span><span class="o">=</span><span class="s1">&#39;OE&lt;sub&gt;2&lt;/sub&gt; is the signed OE&lt;sub&gt;1&lt;/sub&gt; &#39;</span>
                          <span class="s1">&#39;corresponding to the minimum absolute &#39;</span>
                          <span class="s1">&#39;OE&lt;sub&gt;1&lt;/sub&gt; allowing the octave&#39;</span>
-                         <span class="s1">&#39;errors 2, 3, &amp;frac12;, and &amp;frac13;: &#39;</span>
+                         <span class="s1">&#39;errors 2, 3, 1/2, and 1/3: &#39;</span>
                          <span class="s1">&#39;&lt;code&gt;OE&lt;sub&gt;2&lt;/sub&gt;(E) = &#39;</span>
                          <span class="s1">&#39;arg min&lt;sub&gt;x&lt;/sub&gt;(|x|) with x ∈ &#39;</span>
                          <span class="s1">&#39;{OE&lt;sub&gt;1&lt;/sub&gt;(E), OE&lt;sub&gt;1&lt;/sub&gt;(2E), &#39;</span>
@@ -1911,7 +1833,7 @@
 <span class="n">AOE2</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="s1">&#39;AOE2&#39;</span><span class="p">,</span> <span class="n">formatted_name</span><span class="o">=</span><span class="s1">&#39;AOE&lt;sub&gt;2&lt;/sub&gt;&#39;</span><span class="p">,</span>
               <span class="n">description</span><span class="o">=</span><span class="s1">&#39;AOE&lt;sub&gt;2&lt;/sub&gt; is the minimum of &#39;</span>
                           <span class="s1">&#39;AOE&lt;sub&gt;1&lt;/sub&gt; allowing the octave &#39;</span>
-                          <span class="s1">&#39;errors 2, 3, &amp;frac12;, and &amp;frac13;: &#39;</span>
+                          <span class="s1">&#39;errors 2, 3, 1/2, and 1/3: &#39;</span>
                           <span class="s1">&#39;&lt;code&gt;AOE&lt;sub&gt;2&lt;/sub&gt;(E) = min(&#39;</span>
                           <span class="s1">&#39;AOE&lt;sub&gt;1&lt;/sub&gt;(E), AOE&lt;sub&gt;1&lt;/sub&gt;(2E), &#39;</span>
                           <span class="s1">&#39;AOE&lt;sub&gt;1&lt;/sub&gt;(3E), AOE&lt;sub&gt;1&lt;/sub&gt;(&amp;frac12;E), &#39;</span>
@@ -1962,42 +1884,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019, tempo_eval contributors
-
-    </p>
+    <p>&#169; Copyright 2019, tempo_eval contributors.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
