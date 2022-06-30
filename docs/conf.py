@@ -14,13 +14,14 @@ import os
 import re
 import sys
 from importlib.machinery import SourceFileLoader
+from datetime import date
 
 sys.path.insert(0, os.path.abspath('../'))
 
 # -- Project information -----------------------------------------------------
 
 project = 'tempo_eval'
-copyright = '2019-2022, tempo_eval contributors'
+copyright = f'2019-{date.today().year}, tempo_eval contributors'
 author = 'tempo_eval contributors'
 
 # The full version, including alpha/beta/rc tags
