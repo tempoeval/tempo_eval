@@ -426,8 +426,8 @@ def print_corpus_report(corpus_name: str,
                                   beat_references, tag_references,
                                   output_dir=output_dir, size=size)
         else:
-            md.blockquote('No reference Jams found.')
-            logger.warning('No reference Jams found for corpus {}'.format(corpus_name))
+            md.blockquote('No reference JAMS found.')
+            logger.warning('No reference JAMS found for corpus {}'.format(corpus_name))
         if tempo_estimates:
             _print_estimates_eval(md, corpus_name, tempo_references, tempo_estimates,
                                   beat_references, tag_references, output_dir=output_dir,
